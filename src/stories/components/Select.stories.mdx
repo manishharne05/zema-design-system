@@ -1,0 +1,182 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Select from '../../components/Select.vue';
+
+<Meta
+	title="Components/Forms/Select"
+	component={ Select }
+	argTypes={{
+		width: { 
+			control: { 
+				type: 'select',
+				options: ['thin', 'default', 'wide']
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-select
+	:value="value"
+	:options="options"
+	width="wide"
+	label="Series"
+	placeholder="Select one of the series"
+	required
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsSelect: Select },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: {
+				value: '',
+				id: '',
+			},
+		};
+	},
+	template: /*html*/ `
+		<rds-select
+			v-bind="args" 
+			v-model="value"
+		/>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Select
+
+### Selects allow the user to choose an option from a list of items.
+---
+<br />
+
+## When to use:
+- The user has to choose a single option from a list of several items.
+
+
+<br />
+
+## When not to use:
+- The list of options has 3 items or less. In these cases, we recommend using radio buttons.
+- The user needs to select more than one item from the list. In this case, use <a href="https://rds-design-system.netlify.app/?path=/docs/componentes-forms-clusteredmultiselect--clustered-multiselect">ClusteredMultiselects</a>.
+
+<br />
+
+## Comments:
+- Place the options most likely to be selected at the top of the select. If in doubt, sort them in alphanumeric order.
+- Select labels must be succinct (one to three words).
+- Labels must be written with the first letter capitalized and the rest lowercase.
+- ⚠️ **Important:** For the select to work correctly, the property whose values ​​will be displayed in the select must be called `value`, as indicated in the example below in the props table.
+
+<br />
+
+## Preview
+
+export const value = {
+	value: '',
+	id: '',
+};
+export const options = [
+	{
+		value: 'Breaking Bad',
+		id: '1',
+	},
+	{
+		value: 'Game of Thrones ',
+		id: '2',
+	},
+	{
+		value: 'The Umbrella Academy',
+		id: '3',
+	},
+	{
+		value: 'Fringe',
+		id: '4',
+	},
+	{
+		value: 'Breaking Bad',
+		id: '5',
+	},
+	{
+		value: 'Game of Thrones ',
+		id: '6',
+	},
+	{
+		value: 'Dark',
+		id: '7',
+	},
+	{
+		value: '👀 Borat: the second best reporter from the glorious country Kazakhstan travels to America',
+		id: '8',
+	},
+	{
+		value: 'The Office',
+		id: '9',
+	},
+	{
+		value: 'Black Mirror',
+		id: '10',
+	},
+	{
+		value: 'Westworld ',
+		id: '11',
+	},
+	{
+		value: 'Avatar: The Last Airbender',
+		id: '12',
+	},
+	{
+		value: 'The Boys',
+		id: '13',
+	},
+	{
+		value: 'Vikings',
+		id: '14',
+	},
+	{
+		value: 'Arcane',
+		id: '15',
+	},
+];
+
+
+<Canvas>
+	<Story
+		name="Select"
+		args={{
+			options,
+			width: 'wide',
+			id: "id",
+			label: 'Series',
+			placeholder: 'Select one of the series',
+			required: true,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Select" />

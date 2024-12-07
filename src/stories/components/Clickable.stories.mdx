@@ -1,0 +1,75 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Clickable from '../../components/Clickable.vue';
+
+<Meta
+	title="Components/Utils/Clickable"
+	component={ Clickable }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-clickable
+	clickable="true"
+	@click="logClickableClick"
+>
+	Clickable text
+</rds-clickable>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsClickable: Clickable },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-clickable
+			v-bind="args"
+			@click="logClickableClick"
+		>
+			Clickable text
+		</rds-clickable>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Clickable
+
+### Component used to add a clickable wrapper to components that do not have native click interaction.
+---
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Clickable"
+		args={{
+			clickable: true,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Clickable" />

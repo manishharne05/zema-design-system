@@ -1,0 +1,133 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import DialogModal from '../../components/DialogModal.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Components/Notification/DialogModal"
+	component={ DialogModal }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'warning',
+					'error',
+					'info',
+				],
+			}
+		},
+		actionButtonVariant: {
+			control: {
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				]
+			}
+		}
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<rds-dialog-modal
+	v-model="showModal"
+	title="Are you sure you want to continue?"
+	description="This action will affect the system and associated files. 
+	By proceeding, you confirm that you are aware of and 
+	agree to the consequences. Do you wish to continue?"
+	@close="showModal = false"
+	@ok="showModal = false"
+>
+</rds-dialog-modal>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			showModal: false,
+		};
+	},
+	components: { RdsDialogModal: DialogModal, RdsButton: Button },
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<rds-button
+				id="trigger-popover"
+				@click="showModal = true"
+			>
+				Click
+			</rds-button>
+			<rds-dialog-modal
+				v-bind="args"
+				v-model="showModal"
+				title="Are you sure you want to continue?"
+				description="This action will affect the system and associated 
+				files. By proceeding, you confirm that you are aware of and 
+				agree to the consequences. Do you wish to continue?"
+			>
+			</rds-dialog-modal>
+		</div>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.showModal);
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# DialogModal
+
+### DialogModal is a component used to interact with the user in critical or informative situations.
+---
+<br />
+
+## When to use:
+- When it is necessary to obtain user confirmation for actions that may have significant consequences, such as deleting an item;
+- When an error occurs in the system and the user needs to be notified;
+- When it is necessary to inform the user about something important, but which does not require immediate action.
+
+<br />
+
+## When not to use:
+- When the messages to be passed to the user are trivial and do not require the user's immediate attention. In these cases, consider using notifications or alerts.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="DialogModal"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="DialogModal" />

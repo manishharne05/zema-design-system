@@ -1,0 +1,165 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import BarChart from '../../components/BarChart.vue';
+
+<Meta
+	title="Components/Charts/BarChart"
+	component={ BarChart }
+	argTypes={{
+		variant: {
+			control: {
+				type: 'select',
+				options: [
+				'green',
+				'teal',
+				'turquoise',
+				'blue',
+				'indigo',
+				'violet',
+				'pink',
+				'red',
+				'orange',
+				'amber',
+				'gray',
+				'dark'
+				]
+			}
+		},
+		barWidth: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 1,
+				step: 0.01,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format: true,
+				code: /*html*/
+`<rds-bar-chart
+	:data="chartData"
+	:variant="variant"
+	:labels="chartLabels"
+	:bar-width="barWidth"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsBarChart: BarChart },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px; height: 300px">
+			<rds-bar-chart
+				v-bind="args"
+			/>
+		</div>
+	`
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# BarChart
+
+### A reusable chart component to display data visually.
+---
+<br />
+
+## When to use:
+- Display data in visual formats;
+- It is effective when displaying many categories;
+- View trends, proportions or comparisons in data.
+
+<br />
+
+## When not to use:
+- For simple information that can be displayed in a tabular or text format;
+- It is not recommended for percentage comparison or parts of a whole.
+
+## Preview
+
+<Canvas>
+	<Story
+		name="BarChart"
+		args={{
+			labels: ['January', 'February', 'March', 'April', 'May'],
+			variant: 'green',
+			data: [
+				{
+					name: 'Echocardiogram',
+					datasets: [
+						{
+							label: 'Accomplished',
+							data: [50, 50, 50, 50, 50],
+						},
+						{
+							label: 'Pending',
+							data: [200, 180, 250, 190, 280],
+						},
+						{
+							label: 'Unrealized',
+							data: [38, 84, 120, 90, 185],
+						}
+					]
+				},
+				{
+					name: 'X-ray',
+					datasets: [
+						{
+							label: 'Accomplished',
+							data: [120, 220, 180, 320, 150],
+						},
+						{
+							label: 'Pending',
+							data: [98, 145, 160, 190, 175],
+						},
+						{
+							label: 'Unrealized',
+							data: [49, 84, 120, 78, 130],
+						}
+					]
+				},
+				{
+					name: 'Tomography',
+					datasets: [
+						{
+							label: 'Accomplished',
+							data: [55, 40, 33, 90, 120],
+						},
+						{
+							label: 'Pending',
+							data: [25, 30, 90, 45, 20],
+						},
+						{
+							label: 'Unrealized',
+							data: [38, 84, 120, 90, 45],
+						}
+					]
+				}
+			],
+			barWidth: 1,
+	}}
+>
+	{ Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="BarChart" />
+

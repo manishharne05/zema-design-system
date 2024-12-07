@@ -1,0 +1,119 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import PageHeader from '../../components/PageHeader.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Components/Structural/PageHeader"
+	component={ PageHeader }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-page-header
+	title="Procedures"
+	subtitle="Manage registered procedures"
+>
+	<template
+		#aside
+	>
+		<div class="d-flex">
+			<rds-button
+				secondary
+				@click="logClick('Btn 1')"
+				text="Button 1"
+			/>
+			<rds-button
+				class="d-flex align-items-center ml-4"
+				variant="success"
+				@click="logClick('Btn 2')"
+				text="Button 2"
+			/>
+		</div>
+	</template>
+</rds-page-header>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsPageHeader: PageHeader, RdsButton: Button },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-page-header
+			v-bind="args"
+		>
+			<template
+				#aside
+			>
+				<rds-button
+					secondary
+					@click="logClick('Btn 1')"
+					text="Button 1"
+				/>
+				<rds-button
+					class="d-flex align-items-center ml-4"
+					variant="success"
+					@click="logClick('Btn 2')"
+					text="Button 2"
+				/>
+			</template>
+		</rds-page-header>
+	`,
+	methods: { logClick(btnName) { console.info(btnName) } }
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# PageHeader
+
+### PageHeader are components used to add title, subtitle and actions to pages.
+---
+<br />
+
+## When to use:
+- Need to place headers on pages.
+- Need to add action buttons at the page level.
+- Need to add informative cards at the top of pages.
+
+<br />
+
+## When not to use:
+- Off the top of pages.
+
+<br />
+
+## Comments:
+- ⚠️ When a URL is placed as part of the subtitle, it is rendered as a link in the component. To do so, the URL must be preceded by http:// or https://.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="PageHeader"
+		args={{
+			title:"Procedures",
+			subtitle:"Create dashboards and associate them with services. To access the panels externally, go to https://rahulaher.netlify.app and enter the corresponding key."
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="PageHeader" />

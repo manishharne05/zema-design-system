@@ -1,0 +1,104 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import ProgressBar from '../../components/ProgressBar.vue';
+
+<Meta
+	title="Components/Display/ProgressBar"
+	component={ ProgressBar }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+				],
+			}
+		},
+		value: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 1,
+				step: 0.01,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-progress-bar
+	showText
+	:value="0.5"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsProgressBar: ProgressBar },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `<rds-progress-bar v-bind="args"/>`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# ProgressBar
+
+### ProgressBars are components used to indicate the status and progress of something to users.
+---
+<br />
+
+## When to use:
+- It is necessary to convey the idea of ​​progress in something.
+- It is necessary to convey the idea of ​​the status of something.
+- If you want to draw the user's attention to specific information in a graphical way.
+
+<br />
+
+## When not to use:
+- It is necessary to create loaders.
+- A lot of precision is required when showing numbers or progress.
+- It is necessary to create steppers.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Progress bar"
+		args={{
+			value: 0.5,
+			showText: true,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Progress bar" />

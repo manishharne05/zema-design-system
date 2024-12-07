@@ -1,0 +1,114 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Checkbox from '../../components/Checkbox.vue';
+
+<Meta
+	title="Components/Forms/Checkbox"
+	component={ Checkbox }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-checkbox
+	v-model="value"
+	label="checkbox"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsCheckbox: Checkbox },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: false,
+			indeterminate: false,
+		};
+	},
+	template: /*html*/ `
+		<rds-checkbox
+			v-bind="args"
+			v-model="value"
+			v-model:indeterminate="indeterminate"
+		/>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+		console.info('%cv-model:indeterminate: ', 'color: #2C70CD;', this.indeterminate);
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Checkbox
+
+### Checkboxes are form components that allow binary and multiple selections.
+---
+<br />
+
+## When to use:
+- When you need a form component for binary selections.
+
+<br />
+
+## When not to use:
+- Do not use checkboxes without labels.
+- Avoid negative labels, they are more difficult to interpret.
+- When the effect of interacting with Checkbox is required to be immediate. Checkboxes should 
+always be used in conjunction with a submit button. To work around cases like this, use Switches.
+- Avoid using horizontally aligned checkboxes.
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Checkbox"
+		args={{
+			label: 'Checkbox',
+			modelValue: false,
+			indeterminate: false,
+			disabled: false,
+			prominent: false,
+			variant: 'green',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Checkbox" />

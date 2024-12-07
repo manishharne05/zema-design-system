@@ -1,0 +1,201 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import PageLayout from '../../components/PageLayout.vue';
+
+<Meta
+	title="Components/Navigation/PageLayout"
+	component={ PageLayout }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'turquoise',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<rds-page-layout
+	v-bind="args"
+	@click="logClick"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsPageLayout: PageLayout },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-page-layout
+			v-bind="args"
+			@navigation-item-click="logClick"
+			@sidebar-item-click="logClick"
+			@sidebar-logout="logLogout"
+		>
+			<template #default>
+				Page content
+			</template>
+		</rds-page-layout>`,
+	methods: {
+		logClick(element) {
+			console.info('%clogItemClick: ', 'color: #2C70CD;', element);
+		},
+		logLogout(element) {
+			console.info('%clogLogout: ', 'color: #2C70CD;', element);
+		},
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# PageLayout
+
+### PageLayout is a collection of components that allows the creation of standardized screens with primary navigation vertically and secondary navigation horizontally.
+---
+<br />
+
+## We recommend using PageLayout when:
+- When it is necessary to use vertically arranged primary navigation. For more details on how to configure primary navigation in this way, see the Sidebar component documentation.
+- When it is necessary to include a secondary navigation that is arranged horizontally at the top of the screen.
+
+<br />
+
+## We do not recommend using PageLayout when:
+- When it is necessary to use a horizontally arranged primary navigation.
+
+<br />
+
+## Preview
+
+export const sideBarItems = [
+	{
+		label: 'Start',
+		icon: 'home-outline',
+		type: 'route',
+		route: {
+			path: '/home',
+			name: 'home'
+		},
+	},
+	{
+		label: 'Health Surveillance',
+		icon: 'shield-outline',
+		type: 'route',
+		route: {
+			path: '/visa',
+			name: 'visa'
+		},
+	},
+	{
+		label: 'Booking Center',
+		icon: 'calendar-outline',
+		type: 'route',
+		route: {
+			path: '/regulation',
+			name: 'regulation'
+		},
+	},
+	{
+		label: 'Medical care',
+		icon: 'heart-rate-outline',
+		type: 'route',
+		route: {
+			path: '/medical-care',
+			name: 'medical-care'
+		},
+	}
+];
+
+export const navigationItems = [
+	{
+		key: 'dashboard',
+		label: 'Dashboard',
+		route: {
+			name: 'dashboard',
+		},
+	},
+	{
+		key: 'home',
+		label: 'Start',
+		route: {
+			name: 'home',
+		},
+	},
+	{
+		key: 'reports',
+		label: 'Reports',
+		subitems: [
+			{
+				key: 'productivity',
+				label: 'Productivity report',
+				route: {
+					name: 'productivity',
+				},
+			},
+			{
+				key: 'timesheet',
+				label: 'Time sheet',
+				route: {
+					name: 'timesheet',
+				},
+			}
+		],
+	},
+];
+
+<Canvas>
+	<Story
+		name="PageLayout"
+		args={{
+			variant: 'indigo',
+			light: true,
+			user: {
+				name: 'Joana Mendes',
+				role: 'Administrator',
+				picture: 'https://i1.rgstatic.net/ii/profile.image/834217822924800-1575904436366_Q128/Joana-Mendes-13.jpg',
+			},
+			collapsibleSideBar: true,
+			sideBarItems,
+			sideBarActiveItem: sideBarItems[2],
+			navigationActiveItem: navigationItems[1],
+			collapsibleStateSideBar: false,
+			navigationItems,
+			logos: {
+				default: 'https://rahulaher.netlify.app/img/logo/word-black-colored.svg',
+				collapsed: 'https://rahulaher.netlify.app/img/logo/glyph-black-colored.svg',
+			},
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="PageLayout" />

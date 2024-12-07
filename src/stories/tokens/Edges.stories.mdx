@@ -1,0 +1,53 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import Border from '../../docs-components/BorderBuilder.vue';
+
+<Meta title="Foundation/Edges" component={ Border } />
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Edges
+
+Border-radius tokens are used to round the corners of interface components, 
+making them more subtle, friendly and organic. At RDS, we value somewhat 
+rounded edges, which grow according to the size of the component.
+
+<hr />
+<br />
+
+## Recommendations
+
+- We do not recommend using components with border-radius equal to 0, as they 
+go against the visual language we are building.
+
+- We do not recommend using very rounded edges on small elements. The goal is 
+to have more organic edges, not rounded elements.
+
+- We recommend that elements have uniform border-radius, so our tokens do not 
+predict scenarios in which an element has different border-radius for each of 
+its corners. If we see this need, we will work on it in the future.
+
+<br />
+
+## Tokens
+Border-radius tokens are scss variables and are described below.
+<br />
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	components: { Border },
+	template:`<border />`,
+});
+
+<Story name="border">
+	{ Template.bind({}) }
+</Story>

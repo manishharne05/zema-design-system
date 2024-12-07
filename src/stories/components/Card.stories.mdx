@@ -1,0 +1,295 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview, Source } from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+
+import Card from '../../components/Card.vue';
+import Button from '../../components/Button.vue';
+import Badge from '../../components/Badge.vue';
+import Icon from '../../components/Icon.vue';
+
+<Meta
+	title="Components/Containers/Card"
+	component={ Card }
+	argTypes={{
+		imageWidth: {
+			control: {
+				type: 'range',
+				min: 150,
+				max: 550,
+				step: 10,
+			},
+		},
+		imageHeight: {
+			control: {
+				type: 'range',
+				min: 150,
+				max: 550,
+				step: 10,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-card
+	imageWidth="300"
+	imageHeight="180"
+	imageSrc="https://images.unsplash.com/photo-1677391520535-e03e845dec33?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+	@cardClick="logClick"
+>
+	<template #header>
+		<div style="margin-bottom: 12px">
+			Card Title
+		</div>
+	</template>
+	<template #extra>
+		<rds-badge>Action</rds-badge>
+	</template>
+	<template #body>
+		Some quick example text to build on the card title and make up the bulk of the card's content.
+	</template>
+	<template #footer>
+		<rds-button size="md" style="margin-top: 16px">
+			Action 1
+		</rds-button>
+	</template>
+</rds-card>`
+			},
+		}
+	}}
+/>
+
+export const TemplateStandard = (args) => ({
+	components: { RdsCard: Card, RdsButton: Button, RdsBadge: Badge },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-card
+			v-bind="args"
+			@cardClick="logClick"
+		>
+			<template #header>
+				<div style="margin-bottom: 12px">
+					Card Title
+				</div>
+			</template>
+			<template #extra>
+				<rds-badge>Action</rds-badge>
+			</template>
+			<template #body>
+				Some quick example text to build on the card title and make up the bulk of the card's content.
+			</template>
+			<template #footer>
+				<rds-button size="md" style="margin-top: 16px">
+					Action 1
+				</rds-button>
+			</template>
+		</rds-card>
+	`,
+	methods: {
+		logClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+export const SimpleCardTemplate = (args) => ({
+	components: { RdsCard: Card, RdsButton: Button, RdsBadge: Badge },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-card
+			v-bind="args"
+		>
+		</rds-card>
+	`,
+});
+
+export const withSlotsTemplate = (args) => ({
+	components: { RdsCard: Card, RdsButton: Button, RdsBadge: Badge },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-card
+			v-bind="args"
+		>
+			<template #header>45 <small>pregnant women</small></template>
+			<template #extra>
+				<rds-badge variant="red">Alert</rds-badge>
+			</template>
+			<template #body>
+				Haven't had a consultation for more than 30 days
+			</template>
+			<template #footer>
+				<div class="d-flex justify-content-end">
+					<small><strong>VIEW LIST</strong></small>
+				</div>
+			</template>
+		</rds-card>
+	`,
+});
+
+export const withIconTemplate = (args) => ({
+	components: { RdsCard: Card, RdsButton: Button, RdsIcon: Icon },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-card
+			v-bind="args"
+		>
+			<template #icon>
+				<div class="d-flex align-items-center justify-content-center" style="background: #ecf1fe; height: 48px; width: 48px; border-radius: 8px">
+					<rds-icon name="home-outline" color="#1A55A8"/>
+				</div>
+			</template>
+			<template #header>
+				<div style="font-size: 24px; margin-bottom: 4px"> 32 </div>
+			</template>
+			<template #body>
+				UBSs with updated data
+			</template>
+		</rds-card>
+	`,
+});
+
+export const horizontalPropTemplate = (args) => ({
+	components: { RdsCard: Card, RdsButton: Button, RdsBadge: Badge },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-card
+			v-bind="args"
+		>
+		</rds-card>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Card
+
+### Cards are components used as general purpose containers. From your props and slots `header`, `body`, `footer`, `image`, `icon` and `extra` it is possible to create more specific variations and cards, such as the DashboardCard.
+
+---
+<br />
+
+## When to use:
+- To group related elements together.
+- To give visual prominence to related elements. 
+
+<br />
+
+## When not to use:
+- In nested mode, with cards within cards.
+- When the content encapsulated by the card occupies more than half of the page.
+
+<br />
+
+## Comments:
+- ⚠️ There are additional card examples below the props and slots table.
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Card-standard"
+		args={{
+			imageWidth: 300,
+			imageHeight: 180,
+			clickable: false,
+			horizontal: false,
+			imageSrc: 'https://images.unsplash.com/photo-1677391520535-e03e845dec33?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+		}}
+	>
+		{ TemplateStandard.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Card-standard" />
+
+## __Card simples__
+The `title` `content` and `imageSrc` props allow us to create a simple Card layout using just props.
+
+<br />
+
+<Story
+	name="simple-card"
+	args={{
+		title: 'Card Title',
+		content: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+	}}
+>
+	{ SimpleCardTemplate.bind({}) }
+</Story>
+
+<br />
+<br />
+
+## __Using slots__
+Using the `title`, `body`, `footer` and `extra` slots we can create more complex Cards, such as the DashboardCard. 
+
+<br />
+
+<Story
+	name="Card-with-slots"
+>
+	{ withSlotsTemplate.bind({}) }
+</Story>
+
+<br />
+<br />
+
+## __Slot icon__
+The Card has a slot called `icon`, which can be used to add icons to the Card.  
+
+⚠️The `image` Slot has higher precedence than the `icon` slot. If both are used, the `image` slot will be displayed
+and the `icon` slot will be hidden.  
+
+<br />
+
+<Story
+	name="Card-with-icon"
+	args={{
+		horizontal: true,
+	}}
+>
+	{ withIconTemplate.bind({}) }
+</Story>
+
+<br />
+<br />
+
+## __Prop `horizontal`__
+For horizontal Card layouts, use the `horizontal` prop
+
+<br />
+
+<Story
+	name="Card-with-horizontal-prop"
+	args={{
+		imageSrc: 'https://images.unsplash.com/photo-1677391520535-e03e845dec33?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+		horizontal: true,
+		imageWidth: 200,
+		title: 'Card Title',
+		content: "Some quick example text to build on the card title and make up the bulk of the card's content."
+	}}
+>
+	{ horizontalPropTemplate.bind({}) }
+</Story>

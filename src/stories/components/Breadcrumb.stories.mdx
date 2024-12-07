@@ -1,0 +1,141 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Breadcrumb from '../../components/Breadcrumb.vue';
+
+<Meta
+	title="Components/Navigation/Breadcrumb"
+	component={ Breadcrumb }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-breadcrumb
+	:items="items"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsBreadcrumb: Breadcrumb },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-breadcrumb
+			v-bind="args"
+		/>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Breadcrumb
+
+### Breadcrumbs are used to indicate to the user the path taken between the pages of an application until reaching the current page.
+---
+<br />
+
+## When to use:
+- When there are two or more levels in the page hierarchy;
+- When you need to tell the user which page they are on and how they can retrace the steps that took them to the current page;
+
+<br />
+
+## When not to use:
+- In cases where there is only one page in the navigation structure.
+
+<br />
+
+## Note:
+- Ideally Breadcrumbs should be used with <b>three</b> or more hierarchy levels. However, the Breadcrumb of
+RDS can be used with <b>two</b> levels because in this scenario it behaves like a return button to the previous page.
+
+<br />
+
+## Preview
+
+export const items = [
+	{
+		label: 'Reports',
+		route: {
+			path: '/reports',
+			name: 'reports'
+		},
+	},
+	{
+		label: 'Individualized reports',
+		route: {
+			path: '/individualized-reports',
+			name: 'individualized'
+		},
+	},
+	{
+		label: 'User Report',
+		route: {
+			path: '/users-reports',
+			name: 'users'
+		},
+	},
+];
+
+export const items2 = [
+	{
+		label: 'Reports',
+		route: {
+			path: '/reports',
+			name: 'reports'
+		},
+	},
+	{
+		label: 'Individualized reports',
+		route: {
+			path: '/individualized-reports',
+			name: 'individualized'
+		},
+	},
+];
+
+<br />
+
+##### Breadcrumb of 3 or more levels:
+
+<Canvas>
+	<Story
+		name="Breadcrumb"
+		args={{
+			items: items,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Breadcrumb" />
+
+<br />
+
+##### 2-level breadcrumb:
+
+<Canvas>
+	<Story
+		name="two-level-breadcrumb"
+		args={{
+			items: items2,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>

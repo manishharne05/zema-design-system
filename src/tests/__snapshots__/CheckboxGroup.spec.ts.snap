@@ -1,0 +1,19 @@
+// Vitest Snapshot v1
+
+exports[`CheckboxGroup > renders correctly 1`] = `
+"<div data-v-5505c754=\\"\\" class=\\"checkbox__container\\"><label data-v-5505c754=\\"\\" class=\\"checkbox__label\\">Checkbox Group Test
+    <!--v-if-->
+  </label>
+  <div data-v-5505c754=\\"\\" class=\\"checkbox__item\\">
+    <div data-v-75623c80=\\"\\" data-v-5505c754=\\"\\" class=\\"rds-checkbox__container\\">
+      <div data-v-75623c80=\\"\\" class=\\"rds-checkbox__input\\"><input data-v-75623c80=\\"\\" id=\\"rds-checkbox-option-input\\" type=\\"checkbox\\" name=\\"rds-checkbox-option\\" value=\\"false\\"><label data-v-75623c80=\\"\\" for=\\"rds-checkbox-option-input\\" class=\\"rds-checkbox__input--green rds-checkbox__input--unchecked\\"></label></div><label data-v-75623c80=\\"\\" class=\\"rds-checkbox__label\\" for=\\"rds-checkbox-option-input\\">Test 1</label>
+    </div>
+  </div>
+  <div data-v-5505c754=\\"\\" class=\\"checkbox__item\\">
+    <div data-v-75623c80=\\"\\" data-v-5505c754=\\"\\" class=\\"rds-checkbox__container\\">
+      <div data-v-75623c80=\\"\\" class=\\"rds-checkbox__input\\"><input data-v-75623c80=\\"\\" id=\\"rds-checkbox-option-input\\" type=\\"checkbox\\" name=\\"rds-checkbox-option\\" value=\\"false\\"><label data-v-75623c80=\\"\\" for=\\"rds-checkbox-option-input\\" class=\\"rds-checkbox__input--green rds-checkbox__input--unchecked\\"></label></div><label data-v-75623c80=\\"\\" class=\\"rds-checkbox__label\\" for=\\"rds-checkbox-option-input\\">Test 2</label>
+    </div>
+  </div>
+  <!--v-if-->
+</div>"
+`;

@@ -1,0 +1,63 @@
+import { Source, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Utils/Methods/ContrastChecker()"/>
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# ContrastChecker()
+
+ContrastChecker() is a method used to test the contrast between two colors.
+
+<hr />
+<br />
+
+⚠️ *Method only available for internal development in RDS*
+
+<br />
+
+#### Arguments
+
+**(String):**
+- Hexadecimal of the **first** test color
+- Mandatory: *Yes*
+- Valid values: any string in hexadecimal format. e.g.: '#000000';
+
+**(String):**
+- Hexadecimal of the **second** test color
+- Mandatory: *Yes*
+- Valid values: any string in hexadecimal format. e.g.: '#000000';
+
+**(String):**
+- Parameter used as a reference in evaluating the contrast between colors. The recommended parameter for texts up to 18px is 'VERYGOOD' or 'SUPER'.
+- Mandatory: *No*
+- Valid values: 'POOR', 'GOOD', 'VERYGOOD', 'SUPER';
+- Default value: 'GOOD';
+
+<br />
+
+#### Return
+
+**(Boolean):** Indicates whether the contrast test between the two colors entered was approved.
+
+<br />
+
+#### Example
+
+<Story name="ContrastChecker">
+</Story>
+
+<Source
+  language='js'
+  format={true}
+  code={/*js*/ `
+  ContrastChecker('#2AC092', '#FFFFFF', 'POOR') 
+`}
+/>

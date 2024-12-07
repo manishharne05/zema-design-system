@@ -1,0 +1,83 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import FileInput from '../../components/FileInput.vue';
+
+<Meta
+	title="Components/Forms/FileInput"
+	component={ FileInput }
+	argTypes={{
+		size: { control: { type: 'select', options: ['sm', 'md', 'lg'] } },
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-file-input />`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsFileInput: FileInput },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-file-input
+			v-bind="args" 
+		/>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# FileInput
+
+### FileInput is a custom file input.
+---
+<br />
+
+## When to use:
+- It is necessary for the user to upload from their computer to the platform.
+- It is necessary to provide a drag and drop experience for uploading files.
+
+<br />
+
+## When not to use:
+- This is a mobile-first experience.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="FileInput"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="FileInput" />

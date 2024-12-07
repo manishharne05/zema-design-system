@@ -1,0 +1,105 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import StepperInput from '../../components/StepperInput.vue';
+
+<Meta
+	title="Components/Forms/StepperInput"
+	component={ StepperInput }
+	argTypes={{
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+				],
+			}
+		},
+		width: { 
+			control: { 
+				type: 'select',
+				options: ['thin', 'default', 'wide']
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-stepper-input />`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsStepperInput: StepperInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: '',
+		};
+	},
+	template: /*html*/ `
+		<rds-stepper-input
+			v-bind="args"
+			v-model="value"
+		/>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# StepperInput
+
+### StepperInputs are numeric inputs with increment and decrement buttons always visible.
+
+---
+<br />
+
+## When to use:
+- If you need an input of type number.
+- The number to be added to StepperInput is small or has a few digits.
+
+<br />
+
+## When not to use:
+- The data to be used in the component is not numeric.
+- The data to be used in the component is too large.
+- The data to be used in the component is not incremental.
+<br />
+
+
+## Observations:
+- The `width` property has no effect when the `mobile` property is set to `true`.
+
+<br/>
+
+## Preview
+
+<Canvas>
+	<Story
+		name="StepperInput"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="StepperInput" />

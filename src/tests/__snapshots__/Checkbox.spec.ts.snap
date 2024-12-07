@@ -1,0 +1,14 @@
+// Vitest Snapshot v1
+
+exports[`Button > renders correctly 1`] = `
+"<button data-v-3c9d0845=\\"\\" class=\\"button__container button--green--active button-size--md\\" label=\\"checkbox test\\" value=\\"false\\">
+  <!--v-if-->
+  <!-- @slot Slot padrão utilizado para exibir texto do botão. -->Lorem ipsum
+</button>"
+`;
+
+exports[`Checkbox > renders correctly 1`] = `
+"<div data-v-75623c80=\\"\\" class=\\"rds-checkbox__container\\" value=\\"false\\">
+  <div data-v-75623c80=\\"\\" class=\\"rds-checkbox__input\\"><input data-v-75623c80=\\"\\" id=\\"rds-checkbox-option-input\\" type=\\"checkbox\\" name=\\"rds-checkbox-option\\" value=\\"true\\"><label data-v-75623c80=\\"\\" for=\\"rds-checkbox-option-input\\" class=\\"rds-checkbox__input--green rds-checkbox__input--checked\\"></label></div><label data-v-75623c80=\\"\\" class=\\"rds-checkbox__label\\" for=\\"rds-checkbox-option-input\\">checkbox test</label>
+</div>"
+`;

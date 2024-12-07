@@ -1,0 +1,45 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import Shadow from '../../docs-components/Shadows.vue';
+
+<Meta title="Foundation/Shadows" component={ Shadow } />
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Shadows
+Shadow tokens are used to create visual hierarchy and the impression of depth.
+
+<hr />
+<br />
+
+## Recommendations
+
+- We do not recommend using shadows in logos and images.
+
+- Avoid using shadows as the only resource to indicate interaction.
+
+
+<br />
+
+## Tokens
+Shadow tokens are scss variables and are described below.
+<br />
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	components: { Shadow },
+	template:`<shadow />`,
+});
+
+<Story name="shadow">
+	{ Template.bind({}) }
+</Story>

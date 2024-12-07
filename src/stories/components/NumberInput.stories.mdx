@@ -1,0 +1,107 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import NumberInput from '../../components/NumberInput.vue';
+
+<Meta
+	title="Components/Forms/NumberInput"
+	component={ NumberInput }
+	argTypes={{
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+					'loading',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<rds-number-input />`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsNumberInput: NumberInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: 0,
+			unmaskedValue: 0,
+		};
+	},
+	template: /*html*/ `
+		<rds-number-input
+			v-bind="args" 
+			v-model="value"
+			v-model:unmaskedValue="unmaskedValue"
+			@blur="logBlur"
+			@focus="logFocus"
+		/>`,
+	methods: {
+		logBlur() {
+			console.info('blur event');
+		},
+		logFocus() {
+			console.info('focus event');
+		},
+	},
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+		console.info('%cv-model:unmaskedValue ', 'color: #2C70CD;', this.unmaskedValue);
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# NumberInput
+
+### NumberInputs allow users to enter text into an interface
+---
+<br />
+
+## When to use:
+- Require a text field to enter information.
+
+<br />
+
+## When not to use:
+- The data to be used in the component is numeric.
+- There is a need to select multiple items.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="NumberInput"
+		args={{
+			money: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="NumberInput" />

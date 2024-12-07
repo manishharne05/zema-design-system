@@ -1,0 +1,130 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import GaugeChart from '../../components/GaugeChart.vue';
+
+<Meta
+	title="Components/Charts/GaugeChart"
+	component={ GaugeChart }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+		value: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 100,
+				step: 1,
+			}
+		},
+		target: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 100,
+				step: 1,
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<rds-gauge-chart
+	variant="green"
+	:size="300"
+	:value="79.2"
+>
+	<template #popover>
+		<p style="margin: 0;"><strong>In attendance:</strong> 280</p>
+		<p style="margin: 0;"><strong>Pending:</strong> 60</p>
+		<p style="margin: 0;"><strong>In follow-up:</strong> 600</p>
+	</template>
+</rds-gauge-chart>
+`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsGaugeChart: GaugeChart },
+	setup() {
+		return { args };
+	},
+	template: /*html*/
+		`<rds-gauge-chart
+			v-bind="args"
+		>
+			<template #popover>
+				<p style="margin: 0;"><strong>In attendance:</strong> 280</p>
+				<p style="margin: 0;"><strong>Pending:</strong> 60</p>
+				<p style="margin: 0;"><strong>In follow-up:</strong> 600</p>
+			</template>
+		</rds-gauge-chart>`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# GaugeChart
+
+### The Gauge Chart is designed to show progress towards a specific goal.
+---
+<br />
+
+## When to use:
+- Use "Gauge charts" when you need to monitor and visually communicate the status of key metrics or performance indicators;
+- Use "Gauge charts" to communicate the overall state of a single metric in a quick and visually impactful way.
+
+<br />
+
+## When not to use:
+- Avoid using "Gauge charts" to represent complex or multidimensional data sets. This type of chart is most effective when displaying a single metric against a scale.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Gauge Chart"
+		args={{
+			value: 79.2,
+			showTarget: false,
+			target: 85,
+			variant: "green",
+			size: 300,
+			subtitle: 'suitable for the indicator',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Gauge Chart" />

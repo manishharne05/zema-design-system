@@ -1,0 +1,48 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import FontWeight from '../../docs-components/FontWeight.vue';
+
+<Meta title="Foundation/Font Weight" component={ FontWeight } />
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Font Weight
+
+Font weight is a typographic token that can be used to change the 
+default value of the typographic scale weight and add emphasis to 
+certain text or phrase. The font weights used in RDS are mainly 
+Regular (430), Semibold (600) and Bold (800).
+
+<hr />
+<br />
+
+## Recommendations
+
+- To facilitate scanning and work on the content hierarchy, we recommend the occasional use of bold text.
+- We recommend the use of semibold text (600) in section titles and buttons, and its use in texts in the body of pages should be avoided.
+- Texts in the body of the pages should preferably have a weight of regular (430).
+
+<br />
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	components: { FontWeight },
+	template:`<font-weight />`,
+});
+
+## Default Styles
+
+<br />
+
+<Story name="Font Weight">
+	{ Template.bind({}) }
+</Story>

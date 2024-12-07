@@ -1,0 +1,105 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Skeleton from '../../components/Skeleton.vue';
+
+<Meta
+	title="Components/Loaders/Skeleton"
+	component={ Skeleton }
+	argTypes={{
+		shape: {
+			control:{
+				type: 'select',
+				options: [
+					'circle',
+					'square',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`
+<rds-skeleton
+	:width="100"
+	:height="16"
+	:fluid="false"
+	:shape="square"
+/>
+`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsSkeleton: Skeleton },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+	<div style="height: 100px">
+		<rds-skeleton
+			v-bind="args"
+		/>
+	</div>`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Skeleton
+
+### The Skeleton component is used to create placeholders that represent content that is loading or being processed.
+### It is useful for improving user experience by providing visual feedback while the actual content is loading.
+---
+<br />
+
+## When to use:
+- Use the Skeleton component when content loading is noticeable
+to the user and you want to provide visual feedback during this process.
+- It is especially useful in situations where content loading time is
+variable or may take some time to complete.
+
+<br />
+
+## When not to use:
+- Avoid using the Skeleton component when content is loaded
+instantly, as it may cause unnecessary distraction or visual pollution.
+- Do not use when visual charging feedback is not relevant to the
+user experience or when loading is fast and not noticeable.
+
+
+## Comments
+- Customize skeleton properties as needed to match
+to the layout and style of your application.
+- The component supports 'circle' and 'square' shapes and can be scaled
+dynamically to adapt to the available content or width.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Skeleton"
+		args={{
+			width: "100"
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Skeleton" />

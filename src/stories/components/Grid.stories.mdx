@@ -1,0 +1,1564 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Grid from '../../components/Grid.vue';
+import GridItem from '../../components/GridItem.vue';
+import Spacer from '../../components/Spacer.vue';
+
+<Meta
+	title="Foundation/Layout-Grid"
+	component={ Grid }
+	argTypes={{
+		gap: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 32,
+				step: 4,
+			},
+		},
+		cols: {
+			control: {
+				type: 'range',
+				min: 1,
+				max: 12,
+				step: 1,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { 
+			canvas: { 
+				hidden: true 
+			}
+		},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`		<div class="grid-background">
+			<rds-grid
+				v-bind="args"
+				class="grid-background"
+			>
+				<rds-grid-item
+					subGrid
+					gap="32px"
+					colSpan="3"
+					rowSpan="1"
+				>
+					<div class="docs-grid-cell">
+						Cell 1
+					</div>
+					<div class="docs-grid-cell">
+						Cell 3
+					</div>
+				</rds-grid-item>
+				<rds-grid-item
+					colSpan="3"
+					rowSpan="1"
+					class="docs-grid-cell"
+				>
+					Cell 2
+				</rds-grid-item>
+				<rds-grid-item
+					subGrid
+					gap="32px"
+					colSpan="4"
+				>
+					<rds-grid
+						gap="32px"
+						cols="minmax(250px, auto) 1fr"
+					>
+						<div class="docs-grid-cell">
+							Cell 4
+						</div>
+						<div class="docs-grid-cell">
+							Cell 5
+						</div>
+					</rds-grid>
+					<div class="docs-grid-cell">
+						Cell 6
+					</div>
+				</rds-grid-item>
+				<rds-grid-item
+					colSpan="2"
+					class="docs-grid-cell"
+				>
+					Cell 7
+				</rds-grid-item>
+				<rds-grid-item
+					colSpan="6"
+					class="docs-grid-cell"
+				>
+					Cell 8
+				</rds-grid-item>
+			</rds-grid>
+		</div>`
+			},
+		}
+	}}
+/>
+
+export const ColsTemplate1 = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem, RdsSpacer: Spacer},
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			:cols="3"
+			gap="20px"
+			class="grid-background"
+		>
+			<rds-grid-item>
+				<div class="docs-grid-cell">1fr</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">1fr</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">1fr</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+export const ColsTemplate2 = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem, RdsSpacer: Spacer},
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			cols="minmax(auto, 50%) 1fr minmax(100px, 300px)"
+			gap="20px"
+			class="grid-background"
+		>
+			<rds-grid-item>
+				<div class="docs-grid-cell">minmax(auto, 50%)</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">1fr</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">minmax(100px, 300px)</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+export const ColsTemplate3 = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem},
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			:cols="['200px', '6rem', '50%']"
+			gap="20px"
+			class="grid-background"
+		>
+			<rds-grid-item>
+				<div class="docs-grid-cell">200px</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">6rem</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">50%</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+export const ColSpan = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem},
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			v-bind="args"
+			:cols="6"
+			gap="20px"
+			class="grid-background"
+		>
+			<rds-grid-item colSpan="1">
+				<div class="docs-grid-cell">col-span="1"</div>
+			</rds-grid-item>
+			<rds-grid-item colSpan="3">
+				<div class="docs-grid-cell">col-span="2"</div>
+			</rds-grid-item>
+			<rds-grid-item colSpan="2">
+				<div class="docs-grid-cell">col-span="3"</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+export const ColStart = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem},
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			v-bind="args"
+			:cols="6"
+			gap="20px"
+			class="grid-background"
+		>
+			<rds-grid-item colSpan="1" colStart="3">
+				<div class="docs-grid-cell">col-start="3"</div>
+			</rds-grid-item>
+			<rds-grid-item colSpan="1" colStart="5">
+				<div class="docs-grid-cell">col-start="5"</div>
+			</rds-grid-item>
+			<rds-grid-item colSpan="2" colStart="4">
+				<div class="docs-grid-cell">col-start="4"</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+export const RowsTemplates = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem},
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			v-bind="args"
+			:cols="1"
+			:rows="['32px', '3.2rem', '40%']"
+			gap="4px"
+			class="grid-background"
+		>
+			<rds-grid-item>
+				<div class="docs-grid-cell">32px</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">3.2rem</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">40%</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+export const AutoRows = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem},
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			v-bind="args"
+			rows="50px 50px"
+			autoRows="120px"
+			gap="20px"
+			class="grid-background"
+		>
+			<rds-grid-item>
+				<div class="docs-grid-cell">50px</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">50px</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">120px</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">120px</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+export const RowSpan = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem},
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			v-bind="args"
+			:cols="3"
+			:rows="2"
+			gap="20px"
+			class="grid-background"
+		>
+			<rds-grid-item rowSpan="2">
+				<div class="docs-grid-cell">row-span="2"</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">--</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">--</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+export const RowStart = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem},
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			v-bind="args"
+			:rows="6"
+			gap="20px"
+			class="grid-background"
+		>
+			<rds-grid-item rowStart="2">
+				<div class="docs-grid-cell">row-start="2"</div>
+			</rds-grid-item>
+			<rds-grid-item rowStart="3">
+				<div class="docs-grid-cell">row-start="3"</div>
+			</rds-grid-item>
+			<rds-grid-item rowStart="6">
+				<div class="docs-grid-cell">row-start="6"</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+export const GapTemplate1 = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem},
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			:cols="2"
+			gap="8px"
+			class="grid-background"
+		>
+			<rds-grid-item>
+				<div class="docs-grid-cell">01</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">02</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">03</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">04</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+export const GapTemplate2 = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem},
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+			<rds-grid
+				:cols="2"
+				rowGap="30px"
+				colGap="120px"
+				class="grid-background"
+			>
+				<rds-grid-item>
+					<div class="docs-grid-cell">01</div>
+				</rds-grid-item>
+				<rds-grid-item>
+					<div class="docs-grid-cell">02</div>
+				</rds-grid-item>
+				<rds-grid-item>
+					<div class="docs-grid-cell">03</div>
+				</rds-grid-item>
+				<rds-grid-item>
+					<div class="docs-grid-cell">04</div>
+				</rds-grid-item>
+			</rds-grid>
+	`,
+});
+
+export const GridJustify1 = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem},
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+				cols="100px 100px 100px"
+				gap="20px"
+				class="grid-background"
+				justify="space-between"
+			>
+				<rds-grid-item>
+					<div class="docs-grid-cell">01</div>
+				</rds-grid-item>
+				<rds-grid-item>
+					<div class="docs-grid-cell">02</div>
+				</rds-grid-item>
+				<rds-grid-item>
+					<div class="docs-grid-cell">03</div>
+				</rds-grid-item>
+			</rds-grid>
+	`,
+});
+
+export const GridJustify2 = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem},
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			cols="100px 100px 100px"
+			gap="20px"
+			class="grid-background"
+			justify="center"
+		>
+			<rds-grid-item>
+				<div class="docs-grid-cell">01</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">02</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">03</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+export const GridJustify3 = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem},
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			cols="100px 100px 100px"
+			gap="20px"
+			class="grid-background"
+			justify="end"
+		>
+			<rds-grid-item>
+				<div class="docs-grid-cell">01</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">02</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">03</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+export const GridAlign1 = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem },
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			cols="100px 100px 100px"
+			rows="100px"
+			gap="20px"
+			class="grid-background"
+			align="start"
+		>
+			<rds-grid-item>
+				<div class="docs-grid-cell">01</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">02</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">03</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+export const GridAlign2 = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem },
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			cols="100px 100px 100px"
+			rows="100px"
+			gap="20px"
+			class="grid-background"
+			align="center"
+		>
+			<rds-grid-item>
+				<div class="docs-grid-cell">01</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">02</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">03</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+
+export const GridAlign3 = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem },
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+			<rds-grid
+				cols="100px 100px 100px"
+				rows="100px"
+				gap="20px"
+				class="grid-background"
+				align="end"
+			>
+				<rds-grid-item>
+					<div class="docs-grid-cell">01</div>
+				</rds-grid-item>
+				<rds-grid-item>
+					<div class="docs-grid-cell">02</div>
+				</rds-grid-item>
+				<rds-grid-item>
+					<div class="docs-grid-cell">03</div>
+				</rds-grid-item>
+			</rds-grid>
+	`,
+});
+
+
+export const ItemJustify = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem, RdsSpacer: Spacer},
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			v-bind="args"
+			cols="200px"
+			gap="20px"
+			class="grid-background"
+		>
+			<rds-grid-item justify="start">
+				<div class="docs-grid-cell">justify="start"</div>
+			</rds-grid-item>
+			<rds-grid-item  justify="center">
+				<div class="docs-grid-cell">justify="center"</div>
+			</rds-grid-item>
+			<rds-grid-item  justify="end">
+				<div class="docs-grid-cell">justify="end"</div>
+			</rds-grid-item>
+			<rds-grid-item justify="stretch">
+				<div class="docs-grid-cell">justify="stretch"</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+
+export const ItemAlign = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem },
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			cols="200px 200px 200px 200px"
+			rows="200px"
+			gap="20px"
+			class="grid-background"
+		>
+			<rds-grid-item align="start">
+				<div class="docs-grid-cell">align="start"</div>
+			</rds-grid-item>
+			<rds-grid-item  align="center">
+				<div class="docs-grid-cell">align="center"</div>
+			</rds-grid-item>
+			<rds-grid-item  align="end">
+				<div class="docs-grid-cell">align="end"</div>
+			</rds-grid-item>
+			<rds-grid-item align="stretch">
+				<div class="docs-grid-cell">align="stretch"</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+
+
+export const SubGrid = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem },
+	setup() {
+		return { args };
+	},
+		template: /*html*/ `
+		<rds-grid
+			v-bind="args"
+			cols="250px 250px 250px"
+			rows="100px"
+			gap="20px"
+			class="grid-background"
+			justify="space-between"
+		>
+			<rds-grid-item subGrid direction="column">
+				<div class="docs-grid-cell">I</div>
+				<div class="docs-grid-cell">II</div>
+				<div class="docs-grid-cell">III</div>
+			</rds-grid-item>
+			<rds-grid-item subGrid>
+				<div class="docs-grid-cell">A</div>
+				<div class="docs-grid-cell">B</div>
+			</rds-grid-item>
+			<rds-grid-item>
+				<div class="docs-grid-cell">01</div>
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+
+
+export const Template = (args) => ({
+	components: { RdsGrid: Grid, RdsGridItem: GridItem },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-grid
+			v-bind="args"
+			class="grid-background"
+		>
+			<rds-grid-item
+				subGrid
+				gap="32px"
+				colSpan="3"
+				rowSpan="1"
+			>
+				<div class="docs-grid-cell">
+					Cell 1
+				</div>
+				<div class="docs-grid-cell">
+					Cell 3
+				</div>
+			</rds-grid-item>
+			<rds-grid-item
+				colSpan="3"
+				rowSpan="1"
+				class="docs-grid-cell"
+			>
+				Cell 2
+			</rds-grid-item>
+			<rds-grid-item
+				subGrid
+				gap="32px"
+				colSpan="4"
+			>
+				<rds-grid
+					gap="32px"
+					cols="minmax(250px, auto) 1fr"
+				>
+					<div class="docs-grid-cell">
+						Cell 4
+					</div>
+					<div class="docs-grid-cell">
+						Cell 5
+					</div>
+				</rds-grid>
+				<div class="docs-grid-cell">
+					Cell 6
+				</div>
+			</rds-grid-item>
+			<rds-grid-item
+				colSpan="2"
+				class="docs-grid-cell"
+			>
+				Cell 7
+			</rds-grid-item>
+			<rds-grid-item
+				colSpan="6"
+				class="docs-grid-cell"
+			>
+				Cell 8
+			</rds-grid-item>
+		</rds-grid>
+	`,
+});
+
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Grids
+
+### Grids are components that use the CSS grids API to provide consistent organization structures.
+
+---
+
+<br />
+
+## When to use:
+- To create responsive and consistent layouts across the application.
+- To align elements in rows and columns evenly.
+- In the construction of Dashboards, Bento Grids, Galleries, etc.
+- In structures in which it is necessary to specify the structure of the elements in a two-dimensional way, both in rows and columns;
+
+<br />
+
+## When not to use:
+- When the design requires absolute or fixed positioning of elements;
+- In small, self-contained components that do not require a grid system;
+- In situations where it is necessary to align elements in only one of the dimensions and not in both at the same time. For these cases, use FlexBox.
+
+<br />
+
+## Observations:
+- `<rds-grid>` works together with the `<rds-grid-item>` component. For simplicity, the documentation for both components is represented on this page.
+- The `<rds-grid-item>` component has no practical applicability without `<rds-grid>`, they are dependent components.
+- ⚠️ Although this page explains the use of each property of the `<rds-grid-item>` API, visit the component page if you want to get the full list of props.
+
+
+<br />
+<br />
+
+### __Columns__
+
+The `cols` prop abstracts the `grid-template-columns` property allowing you to define
+the configuration of grid layout columns directly in the component. are accepted
+any valid value for grid-template-columns in CSS, passed as a String.
+If no value is provided for the cols prop, the default value will be "1fr",
+which means that the grid will have a single column that occupies all the available space 
+proportionally.
+
+<br />
+
+###### Accepted Values
+The cols prop accepts the following value types:
+- __String:__ Any valid CSS value for `grid-template-columns` can be provided as a string.
+- __Number:__ If a number is passed, it will be automatically converted to a string representing the grid fraction. For example: 3 will be interpreted as "1fr 1fr 1fr", creating 3 columns of equal size.
+- __Array:__ It is also possible to pass an array containing strings, where each element will represent a column. For example: ['200px', '6rem', '50%'].
+
+
+<br />
+
+<Story
+	name="grid-template-columns1"
+>
+	{ ColsTemplate1.bind({}) }
+</Story>
+
+
+```html
+<rds-grid
+	:cols="3"
+	gap="20px"
+	class="grid-background"
+>
+	<rds-grid-item>
+		<div class="docs-grid-cell">1fr</div>
+	</rds-grid-item>
+	<rds-grid-item>
+		<div class="docs-grid-cell">1fr</div>
+	</rds-grid-item>
+	<rds-grid-item>
+		<div class="docs-grid-cell">1fr</div>
+	</rds-grid-item>
+</rds-grid>
+```
+
+
+<Story
+	name="grid-template-columns2"
+>
+	{ ColsTemplate2.bind({}) }
+</Story>
+
+
+```html
+<rds-grid
+	cols="minmax(auto, 50%) 1fr minmax(100px, 300px)"
+	gap="20px"
+	class="grid-background"
+>
+	<rds-grid-item>
+		<div class="docs-grid-cell">minmax(auto, 50%)</div>
+	</rds-grid-item>
+	<rds-grid-item>
+		<div class="docs-grid-cell">1fr</div>
+	</rds-grid-item>
+	<rds-grid-item>
+		<div class="docs-grid-cell">minmax(100px, 300px)</div>
+	</rds-grid-item>
+</rds-grid>
+```
+
+
+<Story
+	name="grid-template-columns3"
+>
+	{ ColsTemplate3.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		:cols="['200px', '6rem', '50%']"
+		gap="20px"
+		class="grid-background"
+	>
+		<rds-grid-item>
+			<div class="docs-grid-cell">200px</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">6rem</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">50%</div>
+		</rds-grid-item>
+	</rds-grid>
+```
+<br />
+
+
+
+
+### __Column Merge__
+
+The `col-span` prop abstracts the `grid-column` property and allows you to indicate how many columns
+of the grid the `<rds-grid-item>` component (and its children) will occupy.
+
+###### Default behavior
+If the col-start property is not set, specify a col-span of, for example, 3.
+will be equivalent to setting grid-column: auto/span 3, making the item span three
+columns starting from the default (automatic) position in the grid.
+
+###### Accepted Values
+The col-span prop accepts Numbers and Strings
+If the col-start property is not set, assign a col-span of, for example, 3,
+will be equivalent to setting grid-column: auto / span 3, making the item occupy three columns
+starting from the default (automatic) position on the grid.
+
+
+<Story
+	name="col-span"
+>
+	{ ColSpan.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		:cols="6"
+		gap="20px"
+		class="grid-background"
+	>
+		<rds-grid-item colSpan="1">
+			<div class="docs-grid-cell">col-span="1"</div>
+		</rds-grid-item>
+		<rds-grid-item :colSpan="3">
+			<div class="docs-grid-cell">col-span="2"</div>
+		</rds-grid-item>
+		<rds-grid-item colSpan="2">
+			<div class="docs-grid-cell">col-span="3"</div>
+		</rds-grid-item>
+	</rds-grid>
+```
+<br />
+
+
+
+
+
+### __Initial position of columns__
+
+The col-start prop abstracts the grid-column-start CSS property and allows you to define which column
+rendering of the `<rds-grid-item>` component (and its child elements) will begin.
+
+###### Default behavior
+If col-start is not defined, its default value is "auto",
+allowing the browser to decide the initial position of the item in the grid.
+
+###### Accepted Values
+The col-start prop accepts Numbers and Strings
+If the col-span property is not set, specify a col-span of, for example, 3.
+will be equivalent to setting `grid-column: 3 / span 1`, making the item occupy a column
+starting in third position on the Grid.
+
+
+<Story
+	name="col-start"
+>
+	{ ColStart.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		:cols="6"
+		gap="20px"
+		class="grid-background"
+	>
+		<rds-grid-item colStart="3">
+			<div class="docs-grid-cell">col-start="3"</div>
+		</rds-grid-item>
+		<rds-grid-item colStart="5">
+			<div class="docs-grid-cell">col-start="5"</div>
+		</rds-grid-item>
+		<rds-grid-item colSpan="2" colStart="4">
+			<div class="docs-grid-cell">col-start="4"</div>
+		</rds-grid-item>
+	</rds-grid>
+```
+<br />
+
+
+
+
+### __Lines__
+
+The rows prop abstracts the `grid-template-rows` property, allowing you to define the row configuration
+of the grid layout directly in the component. Any valid value for grid-template-rows is accepted
+in CSS, passed as a String. If no value is provided for the rows prop,
+the default value will be "auto", which means each line will have an automatic height,
+content-based.
+
+###### Default behavior
+If `grid-template-rows` is not defined, its default value is `1fr`.
+
+###### Accepted Values
+The cols prop accepts the following value types:
+- __String:__ Any valid CSS value for grid-template-rows can be provided as a string. Examples: "100px 200px auto", "repeat(3, 1fr)", "minmax(100px, auto)";
+- __Number:__ If a number is passed, it will be automatically converted to a string representing the grid fraction. For example: 2 will be interpreted as "1fr 1fr", creating 2 lines of equal size.
+- __Array:__ It is also possible to pass an array containing strings, where each element will represent a line. For example: ['32px', '3.2rem', '40%'].
+
+
+<Story
+	name="grid-template-rows"
+>
+	{ RowsTemplates.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		:cols="1"
+		:rows="['32px', '3.2rem', '40%']"
+		gap="4px"
+		class="grid-background"
+	>
+		<rds-grid-item>
+			<div class="docs-grid-cell">32px</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">3.2rem</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">40%</div>
+		</rds-grid-item>
+	</rds-grid>
+```
+<br />
+
+
+
+### __Size of automatic lines__
+
+The auto-rows prop abstracts the grid-auto-rows CSS property and allows you to define the height of the rows
+automatically created by the grid layout. For example, if the rows property content is set to "50px 50px"
+and auto-rows is set to "120px" the two lines of the grid will be 50px tall, while any line
+additional will be 120px.
+
+###### Default behavior
+If `auto-rows` is not defined, its default value is "1fr",
+
+###### Accepted Values
+The cols prop accepts the following value types:
+- __String:__ Any valid CSS value for `grid-auto-rows` can be provided as a string. Examples: "100px 200px auto", "repeat(3, 1fr)", "minmax(100px, auto)";
+- __Number:__ If a number is passed, it will be automatically converted to a string representing the grid fraction. For example: 2 will be interpreted as "2fr".
+
+
+<Story
+	name="auto-rows"
+>
+	{ AutoRows.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		rows="50px 50px"
+		autoRows="120px"
+		gap="20px"
+		class="grid-background"
+	>
+		<rds-grid-item>
+			<div class="docs-grid-cell">50px</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">50px</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">120px</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">120px</div>
+		</rds-grid-item>
+	</rds-grid>
+```
+<br />
+
+
+
+### __Row Merge__
+
+Equivalent to `col-span`, but for rows, the `row-span` prop abstracts the `grid-row` CSS property
+allowing you to indicate how many lines of the grid the `<rds-grid-item>` component (and its children) will occupy.
+
+###### Default behavior
+If the row-start property is not set, specify a row-span of, for example, 3.
+will be equivalent to setting grid-row: auto/span 3, making the item occupy three
+lines starting from the default (automatic) position on the grid.
+
+###### Accepted Values
+The cols prop accepts the following value types:
+- __String:__ Any valid CSS value for `grid-auto-rows` can be provided as a string. Examples: "100px 200px auto", "repeat(3, 1fr)", "minmax(100px, auto)";
+- __Number:__ If a number is passed, it will be automatically converted to a string representing the grid fraction. For example: 2 will be interpreted as "2fr".
+
+
+<Story
+	name="row-span"
+>
+	{ RowSpan.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		:cols="3"
+		:rows="2"
+		gap="20px"
+		class="grid-background"
+	>
+		<rds-grid-item rowSpan="2">
+			<div class="docs-grid-cell">row-span="2"</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">--</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">--</div>
+		</rds-grid-item>
+	</rds-grid>
+```
+<br />
+
+
+
+### __Initial position of lines__
+
+The row-start prop abstracts the grid-row-start CSS property and allows you to define which row
+rendering of the `<rds-grid-item>` component (and its child elements) will begin.
+
+###### Default behavior
+If row-start is not defined, its default value is "auto",
+allowing the browser to decide the initial position of the item in the grid.
+
+###### Accepted Values
+The row-start prop accepts Numbers and Strings
+If the row-span property is not set, specify a row-span of, for example, 3.
+will be equivalent to setting `grid-row: 3 / span 1`, making the item occupy a space
+on the third line of the Grid.
+
+
+<Story
+	name="row-start"
+>
+	{ RowStart.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		:rows="6"
+		gap="20px"
+		class="grid-background"
+	>
+		<rds-grid-item rowStart="2">
+			<div class="docs-grid-cell">row-start="2"</div>
+		</rds-grid-item>
+		<rds-grid-item rowStart="3">
+			<div class="docs-grid-cell">row-start="3"</div>
+		</rds-grid-item>
+		<rds-grid-item rowStart="6">
+			<div class="docs-grid-cell">row-start="6"</div>
+		</rds-grid-item>
+	</rds-grid>
+```
+<br />
+
+
+
+### __Gap__
+
+The spacing between `<rds-grid>` elements can be defined using the `gap` props.
+The number or expression passed to the prop determines a homogeneous spacing on the grid, with the same value
+applied both horizontally and vertically.
+
+###### Default behavior
+The property's default value is 0, a value that leaves all elements together, without horizontal or vertical spacing.
+
+###### Accepted Values
+Prop gap accepts the following value types:
+- __String:__ Any valid CSS value for `gap` can be provided as a string. Examples: "100px", "4%", "5rem"; ⚠️ **Important:** if no unit is provided, the string entered will behave like a number and will have its value multiplied by 4, with the addition of the "px" unit. Ex.: for `gap="3"` the spacing adopted will be "12px".
+- __Number:__ If a number is passed, it will be multiplied by 4 to adapt to the spacing standard adopted in Cuida and will then be converted to pixels. Ex.: for `:gap="2"` the spacing adopted will be "8px".
+
+
+<Story
+	name="grid-template-1"
+>
+	{ GapTemplate1.bind({}) }
+</Story>
+
+
+```html
+	<rds-grid
+		:cols="2"
+		gap="2"
+		class="grid-background"
+	>
+		<rds-grid-item>
+			<div class="docs-grid-cell">01</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">02</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">03</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">04</div>
+		</rds-grid-item>
+	</rds-grid>
+`
+```
+<br />
+
+
+
+### __RowGap and ColGap__
+
+If you need to specify a horizontal spacing different from the vertical, or indicate only one of them,
+It is possible to use the `row-gap` and `col-gap` props.
+`row-gap` modifies the spacing between grid lines, while `col-gap` modifies the spacing between columns.
+
+###### Default behavior
+The default value of both properties is 0, a value that leaves all elements together, without horizontal or vertical spacing.
+
+###### Accepted Values
+Just like the `gap` prop, `row-gap` and `col-gap` accept Numbers and Strings and work in the same way:
+- __String:__ Any valid CSS value can be provided to props as a string. Examples: "100px", "4%", "5rem"; ⚠️ **Important:** if no unit is provided, the string entered will behave like a number and will have its value multiplied by 4, with the addition of the "px" unit. Ex.: for `row-gap="3"` the spacing between lines will be "12px". The same goes for `col-gap`;
+- __Number:__ If a number is passed, it will be multiplied by 4 to adapt to the spacing standard adopted in Cuida and will then be converted to pixels. Eg: for `:col-gap="2"` the spacing between columns will be "8px". The same goes for `row-gap`;
+
+
+<Story
+	name="grid-template-2"
+>
+	{ GapTemplate2.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		:cols="2"
+		rowGap="30px"
+		colGap="120px"
+		class="grid-background"
+	>
+		<rds-grid-item>
+			<div class="docs-grid-cell">01</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">02</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">03</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">04</div>
+		</rds-grid-item>
+	</rds-grid>
+`
+```
+<br />
+
+
+
+### __Horizontal Alignment__
+
+The justify prop controls the horizontal alignment of items within the `<rds-grid>`, abstracting the
+justify-content property of the CSS Grid.
+
+###### Default behavior
+The default value of the property is "stretch", which causes the items within the grid to occupy the entire area.
+width available in the container.
+
+###### Accepted Values
+Any valid CSS value that controls horizontal alignment in the grid can be provided as a
+string to customize the layout as needed, such as `space-between`, `start`, `center` and `end`.
+
+
+<Story
+	name="grid-justify1"
+>
+	{ GridJustify1.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		cols="100px 100px 100px"
+		gap="20px"
+		class="grid-background"
+		justify="space-between"
+	>
+		<rds-grid-item>
+			<div class="docs-grid-cell">01</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">02</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">03</div>
+		</rds-grid-item>
+	</rds-grid>
+`
+```
+
+
+<Story
+	name="grid-justify2"
+>
+	{ GridJustify2.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		cols="100px 100px 100px"
+		gap="20px"
+		class="grid-background"
+		justify="center"
+	>
+		<rds-grid-item>
+			<div class="docs-grid-cell">01</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">02</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">03</div>
+		</rds-grid-item>
+	</rds-grid>
+`
+```
+
+<Story
+	name="grid-justify3"
+>
+	{ GridJustify3.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		cols="100px 100px 100px"
+		gap="20px"
+		class="grid-background"
+		justify="end"
+	>
+		<rds-grid-item>
+			<div class="docs-grid-cell">01</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">02</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">03</div>
+		</rds-grid-item>
+	</rds-grid>
+`
+```
+<br />
+
+
+
+
+### __Vertical Alignment__
+
+The align prop controls the vertical alignment of items within the `<rds-grid>`, abstracting the property
+CSS Grid `align-items`.
+
+###### Default behavior
+The default value of the property is "stretch", which causes the items within the grid to occupy the entire area.
+height available in the container.
+
+###### Accepted Values
+Any valid CSS value that controls vertical alignment in the grid can be provided as a
+string to customize the layout as needed, such as `start`, `center` and `end`.
+
+
+<Story
+	name="grid-align1"
+>
+	{ GridAlign1.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		cols="100px 100px 100px"
+		rows="100px"
+		gap="20px"
+		class="grid-background"
+		align="start"
+	>
+		<rds-grid-item>
+			<div class="docs-grid-cell">01</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">02</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">03</div>
+		</rds-grid-item>
+	</rds-grid>
+`
+```
+
+
+<Story
+	name="grid-align2"
+>
+	{ GridAlign2.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		cols="100px 100px 100px"
+		rows="100px"
+		gap="20px"
+		class="grid-background"
+		align="center"
+	>
+		<rds-grid-item>
+			<div class="docs-grid-cell">01</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">02</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">03</div>
+		</rds-grid-item>
+	</rds-grid>
+`
+```
+
+
+<Story
+	name="grid-align3"
+>
+	{ GridAlign3.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		cols="100px 100px 100px"
+		rows="100px"
+		gap="20px"
+		class="grid-background"
+		align="end"
+	>
+		<rds-grid-item>
+			<div class="docs-grid-cell">01</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">02</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">03</div>
+		</rds-grid-item>
+	</rds-grid>
+`
+```
+<br />
+
+
+
+### __Horizontal Alignment of Grid Item__
+
+The justify prop in `<rds-grid-item>` controls the individual horizontal alignment of an item within
+a grid cell, abstracting the `justify-self` CSS property.
+
+###### Default behavior
+The default value of the property is "auto", which causes the item to follow the alignment behavior
+set by the container's `justify-content` unless a different value is specified.
+
+By setting the justify prop on a `<rds-grid-item>`, the alignment of the individual item is adjusted accordingly.
+the provided value, overriding the horizontal alignment defined by the container's `justify-content`.
+This allows the item to have alignment behavior independent of other items in the grid.
+
+###### Accepted Values
+Any valid CSS value for `justify-self` can be used to customize the alignment
+horizontal view of individual items within the grid, such as the `start`, `center`, `end` and `stretch` values.
+
+
+<Story
+	name="item-justify"
+>
+	{ ItemJustify.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		cols="200px"
+		gap="20px"
+		class="grid-background"
+	>
+		<rds-grid-item justify="start">
+			<div class="docs-grid-cell">justify="start"</div>
+		</rds-grid-item>
+		<rds-grid-item  justify="center">
+			<div class="docs-grid-cell">justify="center"</div>
+		</rds-grid-item>
+		<rds-grid-item  justify="end">
+			<div class="docs-grid-cell">justify="end"</div>
+		</rds-grid-item>
+		<rds-grid-item justify="stretch">
+			<div class="docs-grid-cell">justify="stretch"</div>
+		</rds-grid-item>
+	</rds-grid>
+`
+```
+<br />
+
+
+
+### __Grid Item Vertical Alignment__
+
+The `align` prop in `<rds-grid-item>` controls the individual vertical alignment of an item within a grid.
+grid cell, abstracting the `align-self` CSS property.
+
+###### Default behavior
+The default value of the property is "auto", which causes the item to follow the alignment behavior
+set by the container's `align-items` unless a different value is specified.
+
+When setting the align prop on a `<rds-grid-item>`, the alignment of the individual item is adjusted according to the
+value provided, overriding the vertical alignment defined by the container's `align-items`.
+This allows the item to have vertical alignment behavior independent of other items in the grid.
+
+###### Accepted Values
+Any valid CSS value for `align-self` can be used to customize the alignment
+vertical view of individual items within the grid, such as the `start`, `center`, `end` and `stretch` values.
+
+
+<Story
+	name="item-align"
+>
+	{ ItemAlign.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		cols="200px 200px 200px 200px"
+		rows="200px"
+		gap="20px"
+		class="grid-background"
+	>
+		<rds-grid-item align="start">
+			<div class="docs-grid-cell">align="start"</div>
+		</rds-grid-item>
+		<rds-grid-item  align="center">
+			<div class="docs-grid-cell">align="center"</div>
+		</rds-grid-item>
+		<rds-grid-item  align="end">
+			<div class="docs-grid-cell">align="end"</div>
+		</rds-grid-item>
+		<rds-grid-item align="stretch">
+			<div class="docs-grid-cell">align="stretch"</div>
+		</rds-grid-item>
+	</rds-grid>
+`
+```
+<br />
+
+
+
+### __SubGrid__
+
+The `subgrid` prop in `<rds-grid-item>` allows you to transform an item into a grid, enabling the construction
+of more complex layouts, with nested grids.
+
+###### Default behavior
+
+The default value of the property is `false`, which means that `<rds-grid-item>` behaves like an item
+normal within a grid, without defining a new internal grid.
+
+When the `subgrid` prop is set to `true`, the CSS display is changed to `grid`, allowing the
+item contains its own grid items.
+
+###### Accepted Values
+The subgrid prop is a Boolean property that accepts the following values:
+- __true:__ activates subgrid mode, allowing the definition of an internal layout.
+- __false (default):__ The item behaves like a normal grid item, without creating a new internal grid.
+
+
+###### Subgrid Direction
+When a `<rds-grid-item>` is behaving as a subgrid, it is possible to control the default organization
+of elements with the `direction` prop. This prop implements the `grid-auto-flow` CSS property.
+
+###### Default behavior
+The default value of the property is "row", which causes the items within the subgrid to be organized
+in lines.
+
+###### Accepted Values
+The direction prop accepts the following values:
+
+- __row (default):__ items are organized into rows, occupying the width of the container before advancing to the next line.
+- __column:__ items are organized into columns, occupying the height of the container before advancing to the next column.
+
+
+<Story
+	name="subgrid"
+>
+	{ SubGrid.bind({}) }
+</Story>
+
+```html
+	<rds-grid
+		cols="250px 250px 250px"
+		rows="100px"
+		gap="20px"
+		class="grid-background"
+		justify="space-between"
+	>
+		<rds-grid-item subGrid direction="column">
+			<div class="docs-grid-cell">I</div>
+			<div class="docs-grid-cell">II</div>
+			<div class="docs-grid-cell">III</div>
+		</rds-grid-item>
+		<rds-grid-item subGrid>
+			<div class="docs-grid-cell">A</div>
+			<div class="docs-grid-cell">B</div>
+		</rds-grid-item>
+		<rds-grid-item>
+			<div class="docs-grid-cell">01</div>
+		</rds-grid-item>
+	</rds-grid>
+`
+```
+<br />

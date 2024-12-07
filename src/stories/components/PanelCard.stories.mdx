@@ -1,0 +1,101 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import PanelCard from '../../components/PanelCard.vue';
+
+<Meta
+	title="Components/Containers/PanelCard"
+	component={ PanelCard }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-panel-card
+	title="Networks"
+	subtitle="Enable regulatory networks"
+>
+	<template #panel-actions>
+		<strong>#</strong>
+	</template>
+	Mussum Ipsum, cacilds vidis liter abertis. Everyone
+	see the mistakes I take, but no one sees the mistakes I take!
+	I threw the stick at the cathouse, but you didn't die. There, then
+	divoltis porris, paradis. Capybara milk, mule milk
+	headless manquis.
+</rds-panel-card>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsPanelCard: PanelCard },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="background: linear-gradient(158.71deg, #FFFFFF -36.57%, #F1F5FB 156.92%); padding: 24px;">
+			<rds-panel-card
+				v-bind="args"
+			>
+				<template #panel-actions>
+					<strong>#</strong>
+				</template>
+				Mussum Ipsum, cacilds vidis liter abertis. Everyone
+				see the mistakes I take, but no one sees the mistakes I take!
+				I threw the stick at the cathouse, but you didn't die. There, then
+				divoltis porris, paradis. Capybara milk, mule milk
+				headless manquis. Viva Forevis aptent taciti sociosqu ad
+				torquent coast. For the increase in cachacis, I complained. Nec
+				orci ornare consequat. Praesent lacinia ultrices consectetur.
+				Sed non ipsum felis. Cevadis in ampoule to form a pindurette.
+			</rds-panel-card>
+		</div>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# PanelCard
+
+### PanelCards are components used to group information into containers with a minimal structure consisting of title, subtitle, and content.
+---
+<br />
+
+## When to use:
+- Create pages and dashboards with cars in a grid.
+- The actions slot must group icons or buttons that apply changes to all information contained in the PanelCard.
+
+<br />
+
+## When not to use:
+- It is necessary to group elements outside the basic structure: title + subtitle + content.
+- It is the only component of its type on the page, occupying the entire available width.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="PanelCard"
+		args={{
+			title: 'Networks',
+			subtitle: 'Enable regulatory networks',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="PanelCard" />

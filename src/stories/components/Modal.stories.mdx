@@ -1,0 +1,136 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Modal from '../../components/Modal.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Components/Overlays/Modal"
+	component={ Modal }
+	argTypes={{
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+					'xl',
+				],
+			}
+		},
+		actionButtonVariant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-modal
+	v-model="showModal"
+	@close="showModal = false"
+	@ok="showModal = false"
+>
+	<span>
+		Mussum Ipsum, cacilds vidis liter abertis. The order of the tractors does not change the hard bread. It's depressed,
+		I know a cachacis that can brighten your life.Paisis, filhis, espiritis santis.Leite de capivaris,
+		headless manquis mule milk.
+	</span>
+</rds-modal>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			showModal: false,
+		};
+	},
+	components: { RdsModal: Modal, RdsButton: Button },
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<rds-button
+				id="trigger-popover"
+				@click="showModal = true"
+			>
+				Click
+			</rds-button>
+			<rds-modal
+				v-bind="args"
+				v-model="showModal"
+			>
+				<span>
+					Mussum Ipsum, cacilds vidis liter abertis. The order of the tractors does not change the hard bread. It's depressed,
+					I know a cachacis that can brighten your life.Paisis, filhis, espiritis santis.Leite de capivaris,
+					headless manquis mule milk.
+				</span>
+			</rds-modal>
+		</div>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.showModal);
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Modal
+
+### Modals are like custom dialogs, windows that display additional content on a layer above the current page, with an overlay covering the page and making it temporarily inaccessible.
+---
+<br />
+
+## When to use:
+- It is necessary to notify the user of some process;
+- Decision-making is necessary to complete an action;
+- If you want to carry out action within a page parallel to its main flow;
+
+<br />
+
+## When not to use:
+- It is necessary to display a large amount of information or complex flows;
+- It must be used in conjunction with other modals and popovers (cascade).
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Modal"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Modal" />

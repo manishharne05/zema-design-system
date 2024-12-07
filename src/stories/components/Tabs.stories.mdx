@@ -1,0 +1,141 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Tabs from '../../components/Tabs.vue';
+
+<Meta
+	title="Components/Navigation/Tabs"
+	component={ Tabs }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<rds-tabs
+	:tabs="items"
+	:activeTab="items[1]"
+>
+	<template #room-42>
+		Psychology Room
+	</template>
+	<template #room-51>
+		Physiotherapy Room
+	</template>
+	<template #room-13>
+		Otorhinolaryngologist Room
+	</template>
+</rds-tabs>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsTabs: Tabs },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px;">
+			<rds-tabs
+				v-bind="args"
+				@tabs-change="logTabsChange"
+			>
+				<template #room-42>
+					Psychology Room
+				</template>
+				<template #room-51>
+					Physiotherapy Room
+				</template>
+				<template #room-13>
+					Otorhinolaryngologist Room
+				</template>
+			</rds-tabs>
+	</div>
+	`,
+	methods: {
+		logTabsChange(event) {
+			console.info('%ctabs-change: ', 'color: #2C70CD;', event);
+		},
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Tabs
+
+### Tabs are components used to create internal navigation solutions.
+---
+<br />
+
+## When to use:
+- It is necessary to separate the content into tabs and navigate through them.
+- It is not the case to use solutions such as navbars, sidebars, cards or links as navigation.
+
+<br />
+
+## When not to use:
+- There are too many items to be shown as tabs.
+- When the click action performed by the user takes him to another page.
+
+<br />
+
+## Preview
+
+export const items = [
+	{
+		title: 'Psychology',
+		name: 'room-42',
+	},
+	{
+		title: 'Physiotherapy',
+		name: 'room-51',
+	},
+	{
+		title: 'Otorhinolaryngologist',
+		name: 'room-13',
+	},
+];
+
+<Canvas>
+	<Story
+		name="Tabs"
+		args={{
+			tabs: items,
+			activeTab: items[1],
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Tabs" />

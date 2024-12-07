@@ -1,0 +1,151 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Popover from '../../components/Popover.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Components/Overlays/Popover"
+	component={ Popover }
+	argTypes={{
+		width: {
+			control: {
+				type: 'range',
+				min: 50,
+				max: 400,
+				step: 10,
+			},
+		},
+		height: {
+			control: {
+				type: 'range',
+				min: 200,
+				max: 500,
+				step: 10,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<div class="d-flex justify-content-center">
+	<rds-button
+		id="trigger-rds-popover"
+		@click="showPopover = true"
+	>
+		Click
+	</rds-button>
+	<rds-popover
+		rightAligned="false"
+		targetId="trigger-rds-popover"
+		width="250"
+		height="250"
+		v-model="showPopover"
+	>
+		<span>
+			Mussum Ipsum, cacilds vidis liter abertis. The order of the tractors does not change the hard bread. It's depressed,
+			I know a cachacis that can brighten your life.Paisis, filhis, espiritis santis.Leite de capivaris,
+			headless manquis mule milk.
+		</span>
+		<span>
+			Mussum Ipsum, cacilds vidis liter abertis. The order of the tractors does not change the hard bread. It's depressed,
+			I know a cachacis that can brighten your life.Paisis, filhis, espiritis santis.Leite de capivaris,
+			headless manquis mule milk.
+		</span>
+	</rds-popover>
+</div>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			showPopover: false,
+		};
+	},
+	components: { RdsPopover: Popover, RdsButton: Button },
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<rds-button
+				id="trigger-rds-popover"
+				@click="showPopover = true"
+			>
+				Click
+			</rds-button>
+			<rds-popover
+				v-bind="args"
+				v-model="showPopover"
+			>
+				<span>
+					Mussum Ipsum, cacilds vidis liter abertis. The order of the tractors does not change the hard bread. It's depressed,
+					I know a cachacis that can brighten your life.Paisis, filhis, espiritis santis.Leite de capivaris,
+					headless manquis mule milk.
+				</span>
+				<span>
+					Mussum Ipsum, cacilds vidis liter abertis. The order of the tractors does not change the hard bread. It's depressed,
+					I know a cachacis that can brighten your life.Paisis, filhis, espiritis santis.Leite de capivaris,
+					headless manquis mule milk.
+				</span>
+			</rds-popover>
+		</div>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.showPopover);
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Popover
+
+### Popovers are floating components used to display, upon interaction, information and actions related to the content on the screen.
+
+---
+<br />
+
+## When to use:
+- To create dropdowns;
+- To show additional information or actions on a certain interface element;
+
+<br />
+
+## When not to use:
+- As a replacement for Tooltips, that is, having only small portions of text as content;
+- As a substitute for modals;
+- To show critical information for the success of a user action;
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Popover"
+		args={{
+			rightAligned: false,
+			targetId: 'trigger-rds-popover',
+			width: 250,
+			height: 250,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Popover" />

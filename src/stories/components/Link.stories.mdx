@@ -1,0 +1,89 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Link from '../../components/Link.vue';
+
+<Meta
+	title="Components/Navigation/Link"
+	component={ Link }
+	argTypes={{
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-link
+	href="https://github.com/aherrahul/design-system"
+	text="RDS"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsLink: Link },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-link
+			v-bind="args"
+		/>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Link
+
+### Links are components used to navigate to another page and can open a new tab.
+---
+<br />
+
+## When to use:
+- It is necessary to navigate to another section or page.
+- It is necessary to redirect to an external website or document.
+
+<br />
+
+## When not to use:
+- An action needs to be performed (example: save, edit). In these cases, it is recommended to use the Button component.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Link"
+		args={{
+			href: 'https://github.com/aherrahul/design-system',
+			text: 'RDS'
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Link" />

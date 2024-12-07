@@ -1,0 +1,115 @@
+
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import LoadingIndicator from '../../components/LoadingIndicator.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Components/Loaders/LoadingIndicator"
+	component={ LoadingIndicator }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<rds-loading-indicator
+	v-model="showLoadingIndicator"
+	variant="blue"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			showLoadingIndicator: false,
+		};
+	},
+	components: { RdsLoadingIndicator: LoadingIndicator, RdsButton: Button },
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<rds-button
+				id="trigger-popover"
+				@click="showLoadingIndicator = !showLoadingIndicator"
+			>
+				Toggle LoadingIndicator
+			</rds-button>
+			<rds-loading-indicator
+				v-bind="args"
+				style="margin-top: 120px;"
+				v-model="showLoadingIndicator"
+			/>
+		</div>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.showLoadingIndicator);
+	},
+});
+
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+
+# LoadingIndicator
+
+### The LoadingIndicator is a component used to indicate page loading progress, providing a more fluid and informative user experience.
+---
+<br />
+
+## When to use:
+- When navigating between pages or tabs within an application, where the user needs to clearly see the loading progress to know that the transition is in progress;
+- In applications where content loading may take time, such as network operations or heavy data loading.
+
+<br />
+
+## When not to use:
+- For loading secondary data or actions that do not directly affect the user's main navigation;
+- When the user performs interactions that can trigger new loads, such as activating a toggle switch. In these cases, consider using alternatives like **Skeleton** to show content being loaded or **Spinner** to indicate that an action is in progress.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="LoadingIndicator"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="LoadingIndicator" />

@@ -1,0 +1,88 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import CarouselController from '../../components/CarouselController.vue';
+
+<Meta
+	title="Components/Containers/CarouselController"
+	component={ CarouselController }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<rds-carousel-controller
+	:total="12"
+	:perPage="4"
+	propertyName="Metrics"
+	@click-forward="handleClickForwardEvent"
+	@click-back="handleClickBackEvent"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsCarouselController: CarouselController },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-carousel-controller
+			v-bind="args"
+			@click-forward="handleClickForwardEvent"
+			@click-back="handleClickBackEvent"
+		/>
+	`,
+	methods: { 
+		handleClickForwardEvent() { console.info('clicked forward'); },
+		handleClickBackEvent() { console.info('clicked back'); }
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# CarouselController
+
+### CarouselControllers are components used to control the display of elements in carousels.
+---
+<br />
+
+## When to use:
+- You have a category of interface elements that are repeated and can be displayed in the form of a carousel.
+
+<br />
+
+## When not to use:
+- You are working with tables. In these cases we recommend using pagination (TODO).
+- All content to be managed can be displayed at once. In this case there is no need to control pages and use the component;
+
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="CarouselController"
+		args={{
+			total: 12,
+			perPage: 4,
+			propertyName: 'Metrics',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="CarouselController" />

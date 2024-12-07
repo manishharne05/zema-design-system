@@ -1,0 +1,93 @@
+import { Source, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Utils/Sass/PaleteResolver()"/>
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# PaleteResolver()
+
+Mixin sass used to create classes with colors from the Design Dystem palette.
+
+<hr />
+<br />
+
+PaleteResolver, similar to VariantResolver, implements a loop through RDS color tokens,
+but while VariantResolver cycles through the palette returning specific shades, PaleteResolver cycles through colors
+from the palette returning all available shade tokens, providing a single variable called `$color`.
+
+<br />
+
+#### Examples
+
+<Story name="PaleteResolver">
+</Story>
+
+<Source
+	language='css'
+	format={true}
+	code={/*css*/ `
+.color-picker {
+	&__swatch {
+		@include paletteResolver using ($color) {
+			background-color: $color;
+			transition: $interaction;
+		}
+	}
+}
+`}
+/>
+
+The code above without would be the same as:
+
+<Source
+	language='css'
+	format={true}
+	code={/*css*/ `
+.color-picker {
+	&__swatch {
+		&--bn-400 {
+			background-color: $bn-400;
+			transition: $interaction;
+		}
+ 
+		...
+ 
+		&--bn-500 {
+			background-color: $bn-500;
+			transition: $interaction;
+		}
+ 
+		...
+ 
+		&--bn-600 {
+			background-color: $bn-600;
+			transition: $interaction;
+		}
+ 
+		...
+ 
+		&--in-50 {
+			background-color: $in-50;
+			transition: $interaction;
+		}
+ 
+		...
+ 
+		&--in-100 {
+			background-color: $in-100;
+			transition: $interaction;
+		}
+ 
+		...
+	}
+}
+`}
+/>

@@ -1,0 +1,104 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Switch from '../../components/Switch.vue';
+
+<Meta
+	title="Components/Forms/Switch"
+	component={ Switch }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<rds-switch
+	v-model="isSelected"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsSwitch: Switch },
+	data() {
+		return {
+			value: false,
+		};
+	},
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-switch
+			v-bind="args"
+			v-model="value"
+		/>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Switch
+
+### Switches are components used to activate or deactivate specific settings or options. 
+
+---
+<br />
+
+## When to use:
+- Configuration controlled by the Switch must apply changes automatically.
+- When using labels. When used together, they must describe two states, dependent on the state of the Switch.
+
+<br />
+
+## When not to use:
+- In forms that have a submit button.
+- Use Switches to control actions that depend on requests without indicating the waiting time to the user.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Switch"
+		args={{}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Switch" />

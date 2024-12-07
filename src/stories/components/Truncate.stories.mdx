@@ -1,0 +1,83 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Truncate from '../../components/Truncate.vue';
+
+<Meta
+	title="Components/Utils/Truncate"
+	component={ Truncate }
+	argTypes={{
+		width: {
+			control: {
+				type: 'range',
+				min: 10,
+				max: 250,
+				step: 1,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-truncate
+	width="80"
+>
+	Long text to test truncate
+</rds-truncate>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsTruncate: Truncate },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-truncate
+			v-bind="args"
+		>
+			Long text to test truncate
+		</rds-truncate>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Truncate
+
+### Auxiliary component used to truncate text by adding ellipsis to it
+---
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Truncate"
+		args={{
+			width: 80,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Truncate" />

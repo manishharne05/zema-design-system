@@ -1,0 +1,72 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import SearchInput from '../../components/SearchInput.vue';
+
+<Meta
+	title="Components/Forms/SearchInput"
+	component={ SearchInput }
+	argTypes={{
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-search-input />`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsSearchInput: SearchInput },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-search-input
+			v-bind="args" 
+		/>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# SearchInput
+
+### SearchInputs allow users to perform searches on datasets in the interface
+
+---
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="SearchInput"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="SearchInput" />

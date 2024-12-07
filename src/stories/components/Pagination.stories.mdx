@@ -1,0 +1,102 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Pagination from '../../components/Pagination.vue';
+
+<Meta
+	title="Components/Navigation/Pagination"
+	component={ Pagination }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-pagination
+	value="1"
+	perPage="10"
+	total="60"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsPagination: Pagination },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-pagination
+			v-bind="args"
+		/>`,
+});
+
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Pagination
+
+### Pagination are status indicators used to make important metadata evident.
+---
+<br />
+
+## When to use:
+- It is necessary to show statuses associated with business logic or user actions.
+- The content to be shown is *readonly*.
+- You need to categorize something.
+
+
+<br />
+
+## When not to use:
+- The content that Pagination represents can be set or removed by the user.
+- Clicking on the component needs to perform an action or functionality.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Pagination"
+		args={{
+			value: 1,
+			perPage: 10,
+			total: 60,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Pagination" />

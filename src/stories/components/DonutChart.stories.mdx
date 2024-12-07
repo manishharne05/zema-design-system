@@ -1,0 +1,206 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import DonutChart from '../../components/DonutChart.vue';
+
+<Meta
+	title="Components/Charts/DonutChart"
+	component={ DonutChart }
+	argTypes={{
+		variant: {
+			control: {
+				type: 'select',
+				options: [
+				'green',
+				'teal',
+				'turquoise',
+				'blue',
+				'indigo',
+				'violet',
+				'pink',
+				'red',
+				'orange',
+				'amber',
+				'gray',
+				'dark'
+				]
+			}
+		},
+		theme: {
+			control: {
+				type: 'select',
+				options: [
+				'blue',
+				'indigo',
+				]
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format: true,
+				code: /*html*/
+`<rds-donut-chart
+	:data="chartData"
+	:variant="variant"
+	:labels="chartLabels"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsDonutChart: DonutChart },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px; height: 300px">
+			<rds-donut-chart
+				v-bind="args"
+				@chart-click="logChartClick"
+			/>
+		</div>
+	`,
+	methods: {
+		logChartClick(e) {
+			console.info('logDonutChartClick: ', e);
+		},
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# DonutChart
+
+### A reusable chart component for displaying data visually, in a slightly more readable way than PieChart.
+---
+<br />
+
+## When to use:
+- Display data in visual formats.
+- View trends, proportions or comparisons in data.
+- Display proportions or parts of a whole, where each slice represents a portion of the total.
+- Works well with mutually exclusive categories.
+
+<br />
+
+## When not to use:
+- For simple information that can be displayed in a tabular or text format.
+- When the data presents many categories or subcategories.
+- Not suitable for continuous data or temporal data.
+
+## Preview
+
+<br />
+
+#### ⚠️ DonutChart supports 3 types of color configuration: By colors, by variant and by theme.
+
+<br />
+
+## By colors
+
+By sending an array of colors to the colors prop, the Donut's colors will be defined
+from this array, with each segment of the graph corresponding to the defined color
+in the corresponding position of the array.
+
+
+<Canvas>
+	<Story
+		name="DonutChart1"
+		args={{
+			labels: ['January', 'February', 'March', 'April', 'May'],
+			colors: ['teal', 'violet', 'amber', 'blue', 'red'],
+			data: [
+				{
+					name: 'Echocardiogram',
+					datasets: [
+						{
+							label: 'Exams carried out',
+							data: [120, 220, 180, 20, 150],
+						},
+					]
+				},
+			],
+	}}
+>
+	{ Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="DonutChart2" />
+
+<br />
+
+## By theme
+
+When using the theme configuration, DonutChart will apply pre-defined colors,
+previously tested to ensure legibility and visual harmony.
+For now there are **2 defined themes**, `blue` and `indigo`.
+Each color has 10 colors each, so they will work without repetition for graphs with up to 10 datasets
+E.g.: `:theme="blue"`
+
+<Canvas>
+	<Story
+		name="DonutChart2"
+		args={{
+			labels: ['January','February','March', 'April', 'May'],
+			theme:"blue",
+			data: [
+				{
+					name: 'Echocardiogram',
+					datasets: [
+						{
+							label: 'Exams performed',
+							data: [120, 220, 180, 20, 150],
+						},
+					]
+				},
+			],
+	}}
+>
+	{ Template.bind({}) }
+  </Story>
+</Canvas>
+
+<br />
+
+## By variant
+
+If you want to use the chart in monochrome mode, DonutChart has a `variant` prop.
+This prop accepts colors from the Cuida palette and uses different shades of that color to build the graph.
+Eg: `:variant="green"`
+
+<Canvas>
+	<Story
+		name="DonutChart3"
+		args={{
+			labels: ['January','February','March', 'April', 'May'],
+			variant: 'green',
+			data: [
+				{
+					name: 'Echocardiogram',
+					datasets: [
+						{
+							label: 'Exams performed',
+							data: [120, 220, 180, 20, 150],
+						},
+					]
+				},
+			],
+	}}
+>
+	{ Template.bind({}) }
+  </Story>
+</Canvas>

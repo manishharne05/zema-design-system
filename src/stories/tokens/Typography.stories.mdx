@@ -1,0 +1,51 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import Typography from '../../docs-components/Typography.vue';
+
+<Meta title="Foundation/Typography" component={ Typography } />
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Typography
+
+RDS's default typography is Satoshi. We use the Satoshi variable with OpenType resources.
+
+<hr />
+<br />
+
+## Recommendations
+
+- To make reading easier and reduce contrast, never use #000000 on white backgrounds and #FFFFFF on dark backgrounds. Use neutral colors from the RDS palette.
+
+- To facilitate the interface scanning process, we recommend avoiding the use of titles, labels, buttons and other interface elements in capital letters, this feature being recommended only to create differences in the typographic hierarchy.
+
+- To avoid readability problems, we do not recommend using italicized texts.
+
+- To avoid readability problems and interface interpretation errors, we recommend using underlined texts only when necessary, as resources to highlight links.
+
+- To facilitate scanning and work on the content hierarchy, we recommend the occasional use of bold text.
+
+<br />
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	components: { Typography },
+	template:`<typography />`,
+});
+
+## Tokens
+Typography tokens are scss variables whose characteristics are described below.
+<br />
+
+<Story name="typography">
+	{ Template.bind({}) }
+</Story>

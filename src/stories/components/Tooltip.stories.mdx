@@ -1,0 +1,101 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Tooltip from '../../components/Tooltip.vue';
+
+<Meta
+	title="Components/Display/Tooltip"
+	component={ Tooltip }
+	argTypes={{
+		position: {
+			control:{
+				type: 'select',
+				options: [
+					'top',
+					'right',
+					'bottom',
+					'left',
+				],
+			}
+		},
+	}}
+		parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-tooltip
+	text="Tooltip text"
+>
+	Tooltip trigger
+</rds-tooltip>`
+},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsTooltip: Tooltip },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<rds-tooltip
+				v-bind="args"
+			>
+				Tooltip trigger
+			</rds-tooltip>
+		</div>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Tooltip
+
+### Tooltips are non-interactive floating labels used to explain an interface element or feature. They can be activated with hover.
+---
+<br />
+
+## When to use:
+- The text to be displayed as a label is concise, with a maximum of 4 words.
+- To display supplementary information about a feature or interface element.
+
+
+<br />
+
+## When not to use:
+- To communicate errors and system status.
+- To show critical information for understanding a feature or interface element.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Tooltip"
+		args={{
+			text: 'Tooltip text'
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Tooltip" />

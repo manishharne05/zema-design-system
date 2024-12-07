@@ -1,0 +1,114 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import FloatingAssistant from '../../components/FloatingAssistant.vue';
+
+<Meta
+	title="Components/Display/FloatingAssistant"
+	component={ FloatingAssistant }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-floating-assistant
+	v-model="showTip"
+	targetId="floating-assistant-target"
+	title="New functionality!"
+	url="https://rahulaher.netlify.app"
+>
+	Content to be displayed when the card is clicked
+</rds-floating-assistant>`
+},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsFloatingAssistant: FloatingAssistant },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+			<div id="floating-assistant-target" style="width: fit-content;">FloatingAssistant target</div>
+			<rds-floating-assistant
+				v-bind="args"
+				targetId="floating-assistant-target"
+			>
+				The new driver registration functionality allows you to organize and
+				manage your fleet more easily, linking each driver to their
+				specific bus.
+			</rds-floating-assistant>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# FloatingAssistant
+
+### Floating Assistant is a floating component that can be used to provide usability tips or specific information about page content.
+---
+<br />
+
+## When to use:
+- There is a need to provide tips or additional information about a certain element or section of the page.
+- It is necessary to direct the user to an external page that contains additional information/tutorials about the content.
+- The objective is to reduce the amount of information displayed on the screen, keeping the user's focus on the relevant element.
+
+
+<br />
+
+## When not to use:
+- The component becomes intrusive and disrupts navigation and user experience.
+- There is not enough space to display the component and it could be confused with the page content.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="FloatingAssistant"
+		args={{
+			modelValue: true,
+			url: 'https://rahulaher.netlify.app/',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="FloatingAssistant" />

@@ -1,0 +1,263 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import QuickActionBar from '../../components/QuickActionBar.vue';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Components/Overlays/QuickActionBar"
+	component={ QuickActionBar }
+	argTypes={{
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<rds-quick-action-bar
+	v-bind="args"
+	v-model="showSearchBar"
+	:groups="filteredItems"
+	:recents="recents"
+	@search="filterItems"
+	@onItemClick="console.log('Item clicked: ', $event)"
+	@onSeeMoreClick="console.log('See most clicked: ', $event)"
+	@onRemoveRecent="console.log('Item removed: ', $event)"
+	@onEnterPress="console.log('Enter clicked: ', $event)"
+>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			showSearchBar: false,
+			filteredItems: [],
+			groups,
+			recents,
+			loading: false,
+		};
+	},
+	methods: {
+		filterItems(searchTerm) {
+			this.loading = true;
+			if (searchTerm === '') {
+				this.filteredItems = this.groups.map(item => {
+					return {
+						...item,
+						results: []
+					}
+				});
+				return;
+			}
+			setTimeout(() => {
+				this.filteredItems = this.groups.map(item => {
+					return {
+						...item,
+						results: item.results.filter(n => n.title.toLowerCase().includes(searchTerm.toLowerCase()))
+					}
+				});
+				this.loading = false;
+			}, 800);
+		}
+	},
+	components: { RdsQuickActionBar: QuickActionBar, RdsButton: Button },
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<rds-button
+				id="trigger-popover"
+				@click="showSearchBar = !showSearchBar"
+			>
+				Open search bar
+			</rds-button>
+			<rds-quick-action-bar
+				v-bind="args"
+				v-model="showSearchBar"
+				:groups="filteredItems"
+				:recents="recents"
+				:loading="loading"
+				@search="filterItems"
+				@onItemClick="console.log('Item clicked: ', $event)"
+				@onSeeMoreClick="console.log('See most clicked: ', $event)"
+				@onRemoveRecent="console.log('Item removed: ', $event)"
+				@onEnterPress="console.log('Enter clicked: ', $event)"
+			>
+			</rds-quick-action-bar>
+		</div>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# QuickActionBar
+
+### QuickActionBar is a search and quick action component that allows the user to search for information in different areas of the system, such as registered users, metrics and keywords. In addition to searching, it offers the ability to take actions, functioning as a quick action bar that returns the available options, enabling access to situations in which these actions can be performed.
+---
+<br />
+
+## When to use:
+- When the user needs a complete and integrated search that covers different areas and information in the system;
+- When it is important to quickly present consolidated results from various sources without the user having to navigate between different sections;
+- To simplify access to specific records, regardless of where they are in the system, such as people, analytical data, documents and keywords;
+- When quick actions, such as creating new records or metrics, can be accessible directly from the search bar.
+
+<br />
+
+## When not to use:
+- When the user needs a filter or specific search within a restricted section of the system. In this case, consider using local filters or search fields;
+- For actions that require little attention from the user, such as trivial searches that do not require full-screen visibility. 
+
+<br />
+
+## Preview
+
+export const recents = [
+	{
+		title: 'Carla Santana',
+		cpf: '22233344405',
+	},
+	{
+		title: 'Carlota Oliveira',
+	},
+	{
+		title: 'Rodrigo Barboza',
+	},
+	{
+		title: 'Lucas Barbosa',
+		cpf: '22233344405',
+	},
+	{
+		title: 'Greg Uesley Silver',
+		cpf: '22233344405',
+	},
+	{
+		title: 'Heart',
+	},
+];
+
+export const groups = [
+	{
+		category: 'Pregnant Women',
+		results: [
+			{
+				title: 'Carla Santana',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Carliane Ferreira',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Fernanda Cardoso da Fonseca',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Rafael Assuncao',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Alzira Monte',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Antonio de Almeida Castro Silva',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Marcela da Cunha',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Euclides do Amaral',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+			{
+				title: 'Constantino Xavier',
+				cpf: '22233344405',
+				cns: '900098367891993'
+			},
+		]
+	},
+	{
+		category: 'Metrics',
+		results: [
+			{
+				title: 'Number of People',
+				num: 398,
+			},
+			{
+				title: 'Number of Children',
+				num: 398,
+			},
+			{
+				title: 'Number of Dogs',
+				num: 3,
+			},
+			{
+				title: 'Number of Cats',
+				num: 0,
+			},
+			{
+				title: 'Average People',
+				num: 398,
+			},
+			{
+				title: 'Animal Fashion by Residence',
+				num: 398,
+			},
+			{
+				title: 'Country Fashion',
+				num: 400,
+			},
+			{
+				title: 'Maximum People in a Residence',
+				num: 400,
+			},
+			{
+				title: 'Maximum People in a Neighborhood',
+				num: 400,
+			},
+			{
+				title: 'Maximum People in a City',
+				num: 400,
+			},
+		]
+	},
+];
+
+
+<Canvas>
+	<Story
+		name="QuickActionBar"
+		args={{
+			recents,
+			groups,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="QuickActionBar" />

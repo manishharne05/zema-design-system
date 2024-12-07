@@ -1,0 +1,119 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Badge from '../../components/Badge.vue';
+
+<Meta
+	title="Components/Display/Badge"
+	component={ Badge }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+					'white',
+				],
+			}
+		},
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-badge
+	variant="red"
+	size="md"
+>
+	Badge
+</rds-badge>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsBadge: Badge },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-badge
+			v-bind="args"
+			@click="handleEmit"
+		>
+			Badge
+		</rds-badge>`,
+	methods: {
+		handleEmit(value) { console.info('value: ', value); }
+	}
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+
+# Badge
+
+### Badges are status indicators used to make important metadata evident.
+---
+<br />
+
+## When to use:
+- It is necessary to show statuses associated with business logic or user actions.
+- The content to be shown is readonly .
+- You need to categorize something.
+
+
+<br />
+
+## When not to use:
+- The content that the badge represents can be set or removed by the user.
+- Clicking on the component needs to perform an action or functionality.
+
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Badge"
+		args={{
+			variant: 'red',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Badge" />

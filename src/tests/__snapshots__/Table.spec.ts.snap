@@ -1,0 +1,86 @@
+// Vitest Snapshot v1
+
+exports[`Table > renders correctly 1`] = `
+"<table data-v-83c58b0d=\\"\\" class=\\"table__container\\">
+  <tr data-v-83c58b0d=\\"\\" class=\\"table__header\\">
+    <!--v-if-->
+    <th data-v-83c58b0d=\\"\\" class=\\"table__header-item--first\\">
+      <div data-v-83c58b0d=\\"\\" class=\\"table__header-item-content\\">
+        <!--
+						@slot Slot used to render custom items for the table header. Item data relating to the column can be accessed through the \`data\` property. Slot scope data can be accessed in the following format: slot-scope={ data }
+					-->
+        <rds-clickable-stub data-v-83c58b0d=\\"\\" clickable=\\"false\\" id=\\"sort-icon-field1\\"></rds-clickable-stub>
+      </div>
+    </th>
+    <th data-v-83c58b0d=\\"\\" class=\\"table__header-item\\">
+      <div data-v-83c58b0d=\\"\\" class=\\"table__header-item-content\\">
+        <!--
+						@slot Slot used to render custom items for the table header. Item data relating to the column can be accessed through the \`data\` property. Slot scope data can be accessed in the following format: slot-scope={ data }
+					-->
+        <rds-clickable-stub data-v-83c58b0d=\\"\\" clickable=\\"false\\" id=\\"sort-icon-field2\\"></rds-clickable-stub>
+      </div>
+    </th>
+    <th data-v-83c58b0d=\\"\\" class=\\"table__header-item--last\\">
+      <div data-v-83c58b0d=\\"\\" class=\\"table__header-item-content\\">
+        <!--
+						@slot Slot used to render custom items for the table header. Item data relating to the column can be accessed through the \`data\` property. Slot scope data can be accessed in the following format: slot-scope={ data }
+					-->
+        <rds-clickable-stub data-v-83c58b0d=\\"\\" clickable=\\"false\\" id=\\"sort-icon-field3\\"></rds-clickable-stub>
+      </div>
+    </th>
+  </tr>
+  <tr data-v-83c58b0d=\\"\\" class=\\"\\">
+    <!--v-if-->
+    <td data-v-83c58b0d=\\"\\" class=\\"table__item\\" width=\\"auto\\">
+      <!--
+					@slot Slot used to render custom items for table content. Item data for the row can be accessed through the \`data\` property, while the key for the column can be accessed through the \`field\` property. Slot scope data can be accessed in the following format: slot-scope={ \`data\`, \`field\`, \`rowIndex\` and \`colIndex\` }
+				-->field 1 content
+    </td>
+    <td data-v-83c58b0d=\\"\\" class=\\"table__item\\" width=\\"auto\\">
+      <!--
+					@slot Slot used to render custom items for table content. Item data for the row can be accessed through the \`data\` property, while the key for the column can be accessed through the \`field\` property. Slot scope data can be accessed in the following format: slot-scope={ \`data\`, \`field\`, \`rowIndex\` and \`colIndex\` }
+				-->field 2 content
+    </td>
+    <td data-v-83c58b0d=\\"\\" class=\\"table__item\\" width=\\"auto\\">
+      <!--
+					@slot Slot used to render custom items for table content. Item data for the row can be accessed through the \`data\` property, while the key for the column can be accessed through the \`field\` property. Slot scope data can be accessed in the following format: slot-scope={ \`data\`, \`field\`, \`rowIndex\` and \`colIndex\` }
+				-->field 3 content
+    </td>
+  </tr>
+  <tr data-v-83c58b0d=\\"\\" class=\\"\\">
+    <!--v-if-->
+    <td data-v-83c58b0d=\\"\\" class=\\"table__item--first\\" width=\\"auto\\">
+      <!--
+					@slot Slot used to render custom items for table content. Item data for the row can be accessed through the \`data\` property, while the key for the column can be accessed through the \`field\` property. Slot scope data can be accessed in the following format: slot-scope={ \`data\`, \`field\`, \`rowIndex\` and \`colIndex\` }
+				-->field 1 content
+    </td>
+    <td data-v-83c58b0d=\\"\\" class=\\"table__item--common\\" width=\\"auto\\">
+      <!--
+					@slot Slot used to render custom items for table content. Item data for the row can be accessed through the \`data\` property, while the key for the column can be accessed through the \`field\` property. Slot scope data can be accessed in the following format: slot-scope={ \`data\`, \`field\`, \`rowIndex\` and \`colIndex\` }
+				-->field 2 content
+    </td>
+    <td data-v-83c58b0d=\\"\\" class=\\"table__item--last\\" width=\\"auto\\">
+      <!--
+					@slot Slot used to render custom items for table content. Item data for the row can be accessed through the \`data\` property, while the key for the column can be accessed through the \`field\` property. Slot scope data can be accessed in the following format: slot-scope={ \`data\`, \`field\`, \`rowIndex\` and \`colIndex\` }
+				-->field 3 content
+    </td>
+  </tr>
+</table>"
+`;
+
+exports[`TextInput > renders correctly 1`] = `
+"<div data-v-d8d9f755=\\"\\" fields=\\"field1,field2,field3\\" items=\\"[object Object],[object Object]\\"><span data-v-d8d9f755=\\"\\"><label data-v-d8d9f755=\\"\\" class=\\"text-input__label\\"><div data-v-d8d9f755=\\"\\" class=\\"label__content\\" for=\\"rds-text-input\\"><span data-v-d8d9f755=\\"\\">Label</span>
+  <!--v-if-->
+  <!--v-if-->
+</div>
+<!--v-if--></label></span>
+<div data-v-d8d9f755=\\"\\" class=\\"text-input\\"><input data-v-d8d9f755=\\"\\" id=\\"rds-text-input\\" placeholder=\\"Enter information here\\" class=\\"text-input__field\\" type=\\"text\\">
+  <div data-v-d8d9f755=\\"\\" class=\\"text-input__icon-container\\">
+    <!--v-if-->
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+</div>
+<!--v-if-->
+</div>"
+`;

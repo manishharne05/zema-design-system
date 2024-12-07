@@ -1,0 +1,51 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import Palete from '../../docs-components/Palete.vue';
+
+<Meta title="Foundation/Cores" component={ Palete } />
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Cores
+
+Colors are important for identifying our product, in addition to helping to create consistent experiences across our solutions.
+
+<hr />
+<br />
+
+## Recommendations
+
+-  To better differentiate between different types of data and information, when using maps and tables, we recommend using multiple colors.
+
+-  To best communicate the main purpose of the interface, we recommend using the primary color only once per page, or as little as necessary.
+
+-  To facilitate the construction of mental models of interface use, we recommend using colors consistently to represent status, feedback messages and conventions.
+
+E.g.: blue links, red validation messages, blue or green success messages.
+
+## Comments:
+- We recommend using the gradient token as the background of applications. To use it, assign the token to the background property.
+
+<br />
+
+## Color palette
+<br />
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	components: { Palete },
+	template:`<palete />`,
+});
+
+<Story name="Color palete">
+	{ Template.bind({}) }
+</Story>

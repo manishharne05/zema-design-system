@@ -1,0 +1,127 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Chip from '../../components/Chip.vue';
+
+<Meta
+	title="Components/Forms/Chip"
+	component={ Chip }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+					'white',
+					'dark',
+				],
+			}
+		},
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-chip
+	v-model="select"
+	variant="red"
+	size="md"
+>
+	Chip
+</rds-chip>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsChip: Chip },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			select: false,
+		};
+	},
+	template: /*html*/ `
+		<rds-chip
+			v-bind="args"
+			@click="handleEmit"
+		>
+				Chip
+		</rds-chip>`,
+	methods: {
+		handleEmit(value) { console.info('value: ', value); }
+	}
+});
+
+
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+
+# Chip
+
+### Chips help people enter information, make selections, filter content or trigger actions.
+---
+<br />
+
+## When to use:
+- It is necessary to select and/or filter content
+- The content that the chip represents can be set or removed by the user.
+
+
+
+<br />
+
+## When not to use:
+- The content to be shown is *readonly* (in this case, it is best to use the Badge component).
+
+<br />
+
+## Preview
+
+
+<Canvas>
+	<Story
+		name="Chip"
+		args={{
+			variant: 'red',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Chip" />

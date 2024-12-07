@@ -1,0 +1,101 @@
+import { Source, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Utils/Sass/VariantResolver()"/>
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# VariantResolver()
+
+Mixin sass used to assist in the construction of variants in Design System components.
+
+<hr />
+<br />
+
+VariantResolver implements a loop through the colors in the RDS palette and exposes some variables in each one
+of interactions, avoiding the need to create classes for each variant in a component. Using the sass feature
+called [Content Blocks](https://sass-lang.com/documentation/at-rules/mixin#content-blocks), it is possible to inject code
+in each of the interactions through the palette, using the color variables sent as an argument to Mixin.
+
+<br />
+
+The available variables are:
+``$color-name``, ``$base-color``, ``$disabled``, ``$muted``, ``$background`` and ``$hover``.
+
+<br />
+
+- The variable ``$color-name`` contains the name of the colors: 'turquoise', 'green', 'blue', 'indigo', 'violet',
+'pink', 'red', 'orange', 'amber', 'dark', 'gray' and 'white'.
+
+- ``$base-color`` returns tokens with shade `400`, such as $gp-400, $bn-400, etc;
+- ``$disabled`` returns tokens with shade `300`, such as $gp-300, $bn-300, etc;
+- ``$muted`` returns tokens with shade `200`, such as $gp-200, $bn-200, etc;
+- ``$background`` returns tokens with shade `50`, such as $gp-50, $bn-50, etc;
+- And ``$hover`` returns tokens with shade `500`, such as $gp-500, $bn-500, etc;
+
+<br />
+
+#### Example
+
+<Story name="VariantResolver">
+</Story>
+
+<Source
+	language='css'
+	format={true}
+	code={/*css*/ `
+  .avatar {
+    &__container {
+      display: flex;
+      align-items: center;
+ 
+      @include variantResolver using ($color-name, $shade-50, $shade-100, $shade-200, $shade-300, $base-color, $shade-500, $shade-600) {
+        background-color: $base-color;
+ 
+        @if ($color-name == 'white' or $color-name == 'gray') {
+          color: $n-700;
+        } @else {
+          color: $n-0;
+        }
+      }
+    }
+`}
+/>
+
+The code above without would be the same as:
+
+<Source
+	language='css'
+	format={true}
+	code={/*css*/ `
+  .avatar {
+    &__container {
+      display: flex;
+      align-items: center;
+ 
+      &--turquoise {
+        background-color: $ts-400;
+        ...
+      }
+ 
+      &--green {
+        background-color: $gp-400;
+        ...
+      }
+ 
+      &--blue {
+        background-color: $bn-400;
+        ...
+      }
+ 
+      ...
+    }
+`}
+/>

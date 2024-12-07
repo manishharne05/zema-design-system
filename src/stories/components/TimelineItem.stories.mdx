@@ -1,0 +1,116 @@
+import { Meta, Story, ArgsTable, Canvas,  Source } from '@storybook/addon-docs';
+import TimelineItem from '../../components/TimelineItem.vue';
+
+import dedent from 'ts-dedent';
+
+<Meta
+	title="Components/Display/TimelineItem"
+	component={ TimelineItem }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+					'dark',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-timeline-item
+	variant="green"
+	:loading="false"
+	:hollowed="false"
+>
+	<template #opposite>
+		24/01/20202
+	</template>
+	<template #title>
+		Denis Ritchie
+	</template>
+	<template #content>
+		Creator of the C programming language
+	</template>
+</rds-timeline-item>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsTimelineItem: TimelineItem },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-timeline-item
+			v-bind="args"
+		>
+			<template #opposite>
+				24/01/20202
+			</template>
+			<template #title>
+				Denis Ritchie
+			</template>
+			<template #content>
+				Creator of the C programming language
+			</template>
+		</rds-timeline-item>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# TimelineItem
+
+### TimelineItems are auxiliary components used to assemble Timelines.
+---
+<br />
+
+## When not to use:
+- Outside of `Timeline` components.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="TimelineItem"
+		args={{
+			variant: 'green',
+			loading: false,
+			hollowed: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="TimelineItem" />

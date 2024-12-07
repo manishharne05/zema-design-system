@@ -1,0 +1,78 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import PageContainer from '../../components/PageContainer.vue';
+
+<Meta
+	title="Components/Structural/PageContainer"
+	component={ PageContainer }
+	parameters={{
+	viewMode: 'docs',
+	previewTabs: { canvas: { hidden: true }},
+	docs: {
+		source: {
+			language: 'html',
+			format:true,
+			code: /*html*/ 
+`<rds-page-container>
+	Test
+</rds-page-container>`
+},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsPageContainer: PageContainer },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<rds-page-container
+				style="background: silver"
+			>
+				Internal component
+			</rds-page-container>
+		</div>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# PageContainer
+
+### PageContainers are basic structural blocks in RDS. They provide padding and content alignment.
+---
+<br />
+
+## When to use:
+- PageContainers must always be used when building pages, with the content being placed as a slot in the component.
+
+<br />
+
+## When not to use:
+- Nested PageContainers should not be used.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="PageContainer"
+		args={{
+			text: 'Tooltip text'
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="PageContainer" />

@@ -1,0 +1,117 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Button from '../../components/Button.vue';
+
+<Meta
+	title="Components/Forms/Button"
+	component={ Button }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-button
+	variant="green"
+	size="md"
+	text="Lorem Ipsum"
+    @click="buttonClick = true"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsButton: Button },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-button
+			v-bind="args"
+            @button-click="logButtonClick"
+		>
+		</rds-button>`,
+    methods: {
+		logButtonClick(event) {
+			console.info('%con click: ', 'color: #2C70CD;', event);
+		},
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Button
+
+### Buttons are components that allow the user to perform an action with one touch.
+---
+<br />
+
+## When to use:
+- It is necessary to communicate to the user that they can perform an action in the interface, whether in dialogs, modal windows, forms, cards, etc.
+
+
+<br />
+
+## When not to use:
+- It is necessary to give the option to perform an action as a small detail in the interface. In this case, we recommend using links.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Button"
+		args={{
+			variant: 'green',
+			size: 'md',
+			text: 'Button',
+			block: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Button" />

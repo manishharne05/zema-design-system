@@ -1,0 +1,98 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Image from '../../components/Image.vue';
+
+<Meta
+	title="Components/Utils/Image"
+	component={ Image }
+	argTypes={{
+		opacity: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 1,
+				step: 0.1,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-image
+	:width="400"
+	:blackAndWhite="false"
+	:dimmed="false"
+	:roundedCorners="false"
+	:opacity="1"
+	src="https://cdn.dribbble.com/users/56251/screenshots/10780716/media/bf16339f04fb54b38055adcce2a6da21.png?compress=1&resize=1000x750&vertical=top"
+	fallbackSrc="https://sysfront.nyc3.cdn.digitaloceanspaces.com/cuida/images/imagePlaceholder.png"
+	alt="Example image from rds-image"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsImage: Image },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-image
+			v-bind="args"
+		/>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Image
+
+### Image is a utility component used to render images with fallback.
+---
+<br />
+
+## Note:
+- ⚠️ When the `round` prop is true, the image size will be set equal to the width.
+
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Image"
+		args={{
+			src: 'https://cdn.dribbble.com/users/56251/screenshots/10780716/media/bf16339f04fb54b38055adcce2a6da21.png?compress=1&resize=1000x750&vertical=top',
+			fallbackSrc: 'https://sysfront.nyc3.cdn.digitaloceanspaces.com/cuida/images/imagePlaceholder.png',
+			width: 400,
+			blackAndWhite: false,
+			dimmed: false,
+			roundedCorners: false,
+			round: false,
+			opacity: 1,
+			alt: 'Example image from rds-image',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Image" />

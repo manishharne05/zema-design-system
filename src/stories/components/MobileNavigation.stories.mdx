@@ -1,0 +1,169 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import MobileNavigation from '../../components/MobileNavigation.vue';
+
+<Meta
+	title="Components/Navigation/MobileNavigation"
+	component={ MobileNavigation }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'turquoise',
+					'green',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<rds-mobile-navigation
+	variant='indigo'
+	:light=true
+	sidebarLogo='https://rahulaher.netlify.app/img/logo/word-black-colored.svg'
+	:items="items"
+	:activeItem="activeItem"
+	:user="user"
+	sticky=false
+	@item-click="logClick"
+	@logout="logLogout"
+></rds-mobile-navigation>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsMobileNavigation: MobileNavigation },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="position: relative; overflow: auto; height: 930px;
+					width: 430px; border: 1px solid #CCC; margin: auto;
+					border-radius: 20px; cursor: pointer">
+			<rds-mobile-navigation
+				v-bind="args"
+				:sidebar-logo="args.light
+					? 'https://rahulaher.netlify.app/img/logo/word-black-colored.svg'
+					: 'https://rahulaher.netlify.app/img/logo/word-white-colored.svg'
+				"
+				@item-click="logClick"
+				@logout="logLogout"
+			></rds-mobile-navigation>
+		</div>`,
+	methods: {
+		logClick(element) {
+			console.info('%clogItemClick: ', 'color: #2C70CD;', element);
+		},
+		logLogout(element) {
+			console.info('%clogLogout: ', 'color: #2C70CD;', element);
+		},
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# MobileNavigation
+
+### MobileNavigation is a sidebar that provides quick and easy access to the main sections of the application in the mobile environment.
+---
+<br />
+
+## When to use:
+- When navigation in the mobile version of the application is necessary;
+- When it is necessary to facilitate access to different sections of the application, ensuring that the user can easily navigate between pages without getting lost;
+- When vertical space is limited, making the most of the mobile device's screen width.
+
+<br />
+
+## When not to use:
+- When in a desktop environment, where a top or side navigation bar may be more appropriate;
+- When on screens that require significant horizontal space, as the menu may overlap or obstruct the main content.
+
+<br />
+
+## Preview
+
+export const sideBarItems = [
+	{
+		label: 'Start',
+		icon: 'home-outline',
+		type: 'route',
+		route: {
+			path: '/home',
+			name: 'home'
+		},
+	},
+	{
+		label: "Rahul's Design System",
+		icon: 'shield-outline',
+		type: 'route',
+		route: {
+			path: '/visa',
+			name: 'visa'
+		},
+	},
+	{
+		label: 'Booking Center',
+		icon: 'calendar-outline',
+		type: 'route',
+		route: {
+			path: '/regulation',
+			name: 'regulation'
+		},
+	},
+	{
+		label: 'Medical care',
+		icon: 'heart-rate-outline',
+		type: 'route',
+		route: {
+			path: '/medical-care',
+			name: 'medical-care',
+		},
+	},
+];
+
+<Canvas>
+	<Story
+		name="MobileNavigation"
+		args={{
+			variant: 'indigo',
+			light: true,
+			sidebarLogo: 'https://rahulaher.netlify.app/img/logo/word-black-colored.svg',
+			items: sideBarItems,
+			activeItem: sideBarItems[1],
+			user: {
+				name: 'Joana Mendes',
+				role: 'Administrator',
+			},
+			sticky: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="MobileNavigation" />

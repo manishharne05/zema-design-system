@@ -1,0 +1,127 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import AppBar from '../../components/AppBar.vue';
+import Icon from '../../components/Icon.vue';
+
+<Meta
+	title="Components/Structural/AppBar"
+	component={ AppBar }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<rds-app-bar
+	:raBrand="true"
+	:rdsBrand="false"
+	:appSwitcher="true"
+	:help="true"
+	:settings="true"
+	userName="Rahul Aher"
+	userDescription="Administrator"
+	@settings-click="logClick"
+	@help-click="logClick"
+	@avatar-click="logClick"
+	@app-switcher-click="logClick"
+>
+	<template #app-info>
+		<div class="app-switcher">
+			<rds-icon
+				height="24"
+				width="24"
+				light
+				name="calendar-outline"
+			/>
+			<p class="app-name">
+				Appointment center
+			</p>
+		</div>
+	</template>
+	<template #dropdown-content>
+			Dropdown content
+	</template>
+</rds-app-bar>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsAppBar: AppBar, RdsIcon: Icon },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-app-bar
+			v-bind="args"
+			@settings-click="logClick"
+			@help-click="logClick"
+			@notification-click="logClick"
+			@avatar-click="logClick"
+			@app-switcher-click="logClick"
+		>
+			<template #app-info>
+				<div>
+					<rds-icon
+						height="24"
+						width="24"
+						light
+						name="calendar-outline"
+					/>
+					<p class="app-name">
+						Appointment center
+					</p>
+				</div>
+			</template>
+            <template #dropdown-content>
+				Dropdown content
+			</template>
+		</rds-app-bar>
+	`,
+	methods: {
+		logClick(element) {
+			console.info('%clogAction: ', 'color: #2C70CD;', element);
+		},
+	},
+});
+
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# AppBar
+
+### AppBars are horizontal navigation components for RDS and Healthy City products.
+---
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="AppBar"
+		args={{
+			raBrand: true,
+			rdsBrand: false,
+			hideAppSwitcher: true,
+			hideHelp: true,
+			hideSettings: true,
+			userName: 'Rahul Aher',
+			userDescription: 'Administrator'
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="AppBar" />

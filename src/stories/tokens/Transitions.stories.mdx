@@ -1,0 +1,49 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import Transitions from '../../docs-components/Transitions.vue';
+
+<Meta title="Foundation/Transitions" component={ Transitions } />
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Transitions
+
+Transition tokens are used to smooth interactions with RDS components.
+
+<hr />
+<br />
+
+## Recommendations
+
+- Transition tokens were created imagining their use in specific 
+interactions (click, hover, appearance on the screen). Avoid using 
+tokens in situations that are very different from those for which they were designed.
+
+## Comments
+- Hovering over the example illustration in the table will show transition examples using the tokens.
+
+<br />
+
+## Tokens
+Border-radius tokens are scss variables and are described below.
+
+<br />
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	components: { Transitions },
+	template:`<transitions />`,
+});
+
+<Story name="transitions">
+	{ Template.bind({}) }
+</Story>

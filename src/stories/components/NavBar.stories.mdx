@@ -1,0 +1,129 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import NavBar from '../../components/NavBar.vue';
+
+<Meta
+	title="Components/Navigation/NavBar"
+	component={ NavBar }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-nav-bar
+	:items="items"
+	:activeItem="items[1]"
+    variant="green"
+	@click="logClick"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsNavBar: NavBar },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-nav-bar
+			v-bind="args"
+			@click="logClick"
+		/>`,
+	methods: {
+		logClick(element) {
+			console.info('logAction: ', element);
+		},
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# NavBar
+
+### NavBars are components used to create navigation solutions and menus.
+---
+<br />
+
+## We recommend using NavBars when:
+- It is necessary to separate the content by pages and navigate through them.
+- It is not the case to use solutions such as tabs, sidebars, cards or links as navigation.
+
+<br />
+
+## We do not recommend using NavBars when:
+- There are too many items to be shown in the menu.
+- It is necessary to show the links vertically.
+
+<br />
+
+## Preview
+
+export const items = [
+	{
+		label: 'Risk group map',
+		route: {
+			path: '/map',
+			name: 'main'
+		},
+	},
+	{
+		label: 'Healthy League',
+		route: {
+			path: '/liga-saudavel',
+			name: 'page1'
+		},
+	},
+	{
+		label: 'Neighborhood heat map',
+		route: {
+			path: '/heatmap',
+			name: 'page2'
+		},
+	},
+];
+
+<Canvas>
+	<Story
+		name="NavBar"
+		args={{
+			items: items,
+			activeItem: items[1],
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="NavBar" />

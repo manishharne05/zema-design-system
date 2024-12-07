@@ -1,0 +1,130 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import AvatarGroup from '../../components/AvatarGroup.vue';
+import Avatar from '../../components/Avatar.vue';
+
+<Meta
+	title="Components/Display/AvatarGroup"
+	component={ AvatarGroup }
+	argTypes={{
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<rds-avatar-group
+	:avatars="avatars"
+	:size="size"
+	:maxCount="maxCount"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsAvatarGroup: AvatarGroup, RdsAvatar: Avatar },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-avatar-group
+			v-bind="args" 
+		/>
+	`
+});
+
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# AvatarGroup
+
+### AvatarGroups display multiple avatars grouped together in a stack.
+---
+<br />
+
+## When to use:
+- Use AvatarGroups when, in a given context, several users share responsibilities for 
+information or business rules.
+
+## When not to use:
+- In cases where only one user's information will be presented.
+
+## Comments:
+- When you hover the mouse over each Avatar, a tooltip will be displayed with the user's 
+name, if it has been entered.
+- When the number of avatars was greater than the value specified in the maxCount prop, 
+an avatar will be displayed with a counter indicating the number of avatars that were 
+deleted from the AvatarGroup. This counter is clickable and opens a Popover with the 
+list of suppressed avatars.
+
+<br />
+
+## Preview
+
+export const avatars = [
+	{
+		"src": "https://res.cloudinary.com/duojkrgue/image/upload/v1597245616/jjrxzygynbnycnkvmkle.jpg",
+		"name": "Cho Smith"
+	},
+	{
+		"src": "https://res.cloudinary.com/duojkrgue/image/upload/v1597061293/epecvtfhk1afumio20x2.jpg",
+		"name": "Alice Brown"
+	},
+	{
+		"src": "https://res.cloudinary.com/duojkrgue/image/upload/v1597061232/uyhpdxozzozcmr17wgof.jpg",
+		"name": "Leo Garcia"
+	},
+	{
+		"src": "https://res.cloudinary.com/duojkrgue/image/upload/v1597058392/zs4vxtldbq8flgdftgat.jpg",
+		"name": "Dave Jones"
+	},
+	{
+		"src": "https://res.cloudinary.com/duojkrgue/image/upload/v1597058028/eur6ranh3hudjuboazb1.jpg",
+		"name": "Maya Rodriguez"
+	},
+	{
+		"src": "https://res.cloudinary.com/duojkrgue/image/upload/v1588924014/j44b7rr8r7opzyiwhnw6.jpg",
+		"name": "Tina Smith"
+	},
+	{
+		"src": "https://res.cloudinary.com/duojkrgue/image/upload/v1586543245/icdiaxfqzguysbyiydge.png",
+		"name": "Paulo Williams"
+	}
+];
+
+<Canvas>
+	<Story
+		name="AvatarGroup"
+		args={{
+			avatars,
+			size: 'md',
+			maxCount: 4,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="AvatarGroup" />

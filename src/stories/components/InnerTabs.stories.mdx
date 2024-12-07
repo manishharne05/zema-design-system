@@ -1,0 +1,224 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import InnerTabs from '../../components/InnerTabs.vue';
+
+<Meta
+	title="Components/Navigation/InnerTabs"
+	component={ InnerTabs }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-inner-tabs
+	:tabs="dataSet"
+	:activeTab="dataSet[1]"
+>
+	<template #overview>
+		Overview
+	</template>
+	<template #indicator-1>
+		Contents of tab-1
+	</template>
+	<template #indicator-2>
+		Contents of tab-2
+	</template>
+	<template #indicator-3>
+		Tab-3 content
+	</template>
+	<template #indicator-4>
+		Contents of tab-4
+	</template>
+</rds-inner-tabs>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsInnerTabs: InnerTabs },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px;">
+			<rds-inner-tabs
+				v-bind="args"
+			>
+				<template #overview>
+					Overview
+				</template>
+				<template #indicator-1>
+					Contents of tab-1
+				</template>
+				<template #indicator-2>
+					Contents of tab-2
+				</template>
+				<template #indicator-3>
+					Tab-3 content
+				</template>
+				<template #indicator-4>
+					Contents of tab-4
+				</template>
+				<template #indicator-5>
+					Contents of tab-5
+				</template>
+				<template #indicator-6>
+					Contents of tab-6
+				</template>
+				<template #indicator-7>
+					Contents of tab-7
+				</template>
+				<template #indicator-8>
+					Contents of tab-8
+				</template>
+			</rds-inner-tabs>
+	</div>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# InnerTabs
+
+### InnerTabs are components used to create integrated navigation solutions <a href="https://rds-design-system.netlify.app/?path=/docs/componentes-navega%C3%A7%C3%A3o-tabs--tabs ">Tabs</a>.
+---
+<br />
+
+## When to use:
+- Within tabs, there is a need for another level in the navigation structure;
+- In cases where it is very important to show the entire title of the tabs;
+- It is necessary to separate the content into tabs and navigate through them;
+- It is not the case to use solutions such as navbars, sidebars, cards or links as navigation;
+
+<br />
+
+## When not to use:
+- There are too many items to be shown as tabs.
+- When the click action performed by the user takes him to another page.
+
+<br />
+
+## Preview
+
+export const dataSet = [
+	{
+	title: 'Overview',
+		name: 'overview',
+	},
+	{
+		title: 'Indicator 1',
+		name: 'indicator-1',
+	},
+	{
+		title: 'Indicator 2',
+		name: 'indicator-2',
+	},
+	{
+		title: 'Indicator 3',
+		name: 'indicator-3',
+	},
+	{
+		title: 'Indicator 4',
+		name: 'indicator-4',
+	}
+];
+
+export const dataSet2 = [
+	{
+		title: 'Overview',
+		name: 'overview',
+	},
+	{
+		title: 'Indicator 1',
+		name: 'indicator-1',
+	},
+	{
+		title: 'Indicator 2',
+		name: 'indicator-2',
+	},
+	{
+		title: 'Indicator 3',
+		name: 'indicator-3',
+	},
+	{
+		title: 'Indicator 4',
+		name: 'indicator-4',
+	},
+	{
+		title: 'Indicator 5',
+		name: 'indicator-5',
+	},
+	{
+		title: 'Indicator with the absurdly large name 6',
+		name: 'indicator-6',
+	},
+	{
+		title: 'Indicator 7',
+		name: 'indicator-7',
+	},
+	{
+		title: 'Indicator 8',
+		name: 'indicator-8',
+	},
+];
+
+<Canvas>
+	<Story
+		name="InnerTabs"
+		args={{
+			tabs: dataSet,
+			activeTab: dataSet[1],
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="InnerTabs" />
+
+## __With horizontal scroll__
+
+When the set of tabs is wider than the container, a horizontal scroll bar will be displayed so that the layout is not broken into lines or hidden.
+
+<br />
+
+<Story
+	name="InnerTabs2"
+	args={{
+		tabs: dataSet2,
+		activeTab: dataSet2[1],
+	}}
+>
+	{ Template.bind({}) }
+</Story>

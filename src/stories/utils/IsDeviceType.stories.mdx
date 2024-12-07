@@ -1,0 +1,122 @@
+import { Source, Meta, Story } from '@storybook/addon-docs';
+import Button from '../../components/Button.vue';
+import isDeviceTypeMethod from '../../utils/methods/isDeviceType';
+
+<Meta title="Utils/Methods/IsDeviceType()"/>
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# IsDeviceType()
+
+Method used to check whether the device is of a certain type (Smartphone, Tablet, HD Screen, Full HD Screen, Ultra HD Screen).
+
+<hr />
+<br />
+
+#### Arguments
+
+**(String):**
+- Name of the class of devices you want to check
+- Mandatory: *Yes*
+- Valid values: _smartphone_, _tablet_, _hd-screen_, _fhd-screen_, _uhd-screen_;
+
+<br />
+
+#### Return
+
+**(Boolean):** Indicates whether the device used belongs to that group or not.
+
+<br />
+
+#### Example
+
+<Story name="IsDeviceType">
+</Story>
+
+<Source
+  language='js'
+  format={true}
+  code={/*js*/ `
+  isDeviceType('smartphone')
+`}
+/>
+
+#### Usage testing
+Use your browser's developer tools to test screen resolutions by clicking the buttons below to call the function for the respective device class.
+
+
+export const Template = (args) => ({
+	components: { RdsButton: Button },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			methodResponse: '',
+		};
+	},
+	template: /*html*/ `
+    <div :style="{ 'display': 'flex', 'grid-gap': '10px', 'margin-top': '20px' }">
+      <rds-button
+        v-bind="args"
+              @button-click="event => logButtonClick(event, 'smartphone')"
+      >
+      Smartphone
+      </rds-button>
+      <rds-button
+        v-bind="args"
+              @button-click="event => logButtonClick(event, 'tablet')"
+      >
+      Tablet
+      </rds-button>
+      <rds-button
+        v-bind="args"
+              @button-click="event => logButtonClick(event, 'hd-screen')"
+      >
+      HD Screen
+      </rds-button>
+      <rds-button
+        v-bind="args"
+              @button-click="event => logButtonClick(event, 'fhd-screen')"
+      >
+      Full HD Screen
+      </rds-button>
+      <rds-button
+        v-bind="args"
+              @button-click="event => logButtonClick(event, 'uhd-screen')"
+      >
+      Ultra HD Screen
+      </rds-button>
+    </div>
+    <div :style="{ 'margin-top': '12px', 'font-size': '14.2px' }">
+      isDeviceType response: {{ methodResponse }}
+    </div>
+    `,
+    methods: {
+      logButtonClick(event, device) {
+        this.methodResponse = isDeviceTypeMethod(device);
+      },
+	  },
+});
+
+<Canvas>
+	<Story
+		name="Button2"
+		args={{
+			variant: 'green',
+			size: 'md',
+			text: 'Button',
+			block: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>

@@ -1,0 +1,217 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Highlight from '../../components/Highlight.vue';
+
+<Meta
+	title="Components/Display/Highlight"
+	component={ Highlight }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'info',
+					'success',
+					'danger',
+				],
+			}
+		},
+		duration: { 
+			control: {
+				type: 'range',
+				min: 0.5,
+				max: 5,
+				step: 0.1,
+			},
+		},
+		delay: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 5,
+				step: 0.1,
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-highlight
+	animated
+	:duration="1"
+	:delay="0"
+	highlightedText: 'ro',
+	caseSensitive: false,
+>
+	<span> Very important text</span>
+</rds-highlight>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsHighlight: Highlight },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-highlight v-bind="args">
+			The mouse gnawed through the king of ROME's clothes with efficiency, strength and determination.
+		</rds-highlight>
+	`,
+});
+
+export const DefaultSlotDemoTemplate = (args) => ({
+	components: { RdsHighlight: Highlight },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-highlight>
+			The mouse gnawed through the king of ROME's clothes with efficiency, strength and determination.
+		</rds-highlight>
+	`,
+});
+
+export const HighlightedTextTemplate = (args) => ({
+	components: { RdsHighlight: Highlight },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-highlight highlightedText="RO">
+			The mouse gnawed through the king of ROME's clothes with efficiency, strength and determination.
+		</rds-highlight>
+	`,
+});
+
+export const CaseSensitiveTemplate = (args) => ({
+	components: { RdsHighlight: Highlight },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-highlight highlightedText="RO" :caseSensitive="true">
+			The mouse gnawed through the king of ROME's clothes with efficiency, strength and determination.
+		</rds-highlight>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Highlight
+
+### Highlights are components used to highlight important words or phrases in a given context.
+---
+<br />
+
+## When to use:
+- If you want to guide the user's attention to specific words or phrases in the interface (in these scenarios, animated Highlights can be even more effective than regular ones).
+- You are implementing a *diff* feature and need to indicate elements that have been replaced by others.
+
+<br />
+
+## When not to use:
+- If you want to create hierarchy on the page. For these cases, use typographic hierarchy mechanisms such as font weight, size, or color.
+- The element that the Highlight will *wrapper* over is not a text element.
+- Very large sections of text are highlighted. This can end up resulting in the opposite of what you expect with the use of Highlights.
+
+<br />
+<br />
+
+### __Standard usage__
+The default behavior of `rds-highligh`, when no value is indicated in the `highlightedText` prop, is to
+Mark all content passed by slot.
+
+<br />
+
+<Story
+	name="slot-demo-template"
+>
+	{ DefaultSlotDemoTemplate.bind({}) }
+</Story>
+
+```html
+<rds-highlight>
+	The mouse gnawed through the king of ROME's clothes with efficiency, strength and determination.
+</rds-highlight>
+```
+
+<br />
+<br />
+
+### __Highlight specific words in the text__
+If you want to mark only a part of the string passed via slot, you can indicate it in the prop
+`highlightedText` the substring that will receive the highlight.
+
+<br />
+
+<Story
+	name="highlighted-text-template"
+>
+	{ HighlightedTextTemplate.bind({}) }
+</Story>
+
+```html
+<rds-highlight
+	highlightedText="RO"
+>
+	The mouse gnawed through the king of ROME's clothes with efficiency, strength and determination.
+</rds-highlight>
+```
+
+<br />
+<br />
+
+### __Highlight on specific words in the text (Case Sensitive)__
+It is possible to indicate whether comparisons made with the substring must be case sensitive (Case Sensitive).
+
+<br />
+
+<Story
+	name="case-sensitive-template"
+>
+	{ CaseSensitiveTemplate.bind({}) }
+</Story>
+
+```html
+<rds-highlight
+	highlightedText="RO"
+>
+	The mouse gnawed through the king of ROME's clothes with efficiency, strength and determination.
+</rds-highlight>
+```
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Highlight"
+		args={{
+			animated: true,
+			duration: 1,
+			delay: 0,
+			highlightedText: 'ro',
+			caseSensitive: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Highlight" />

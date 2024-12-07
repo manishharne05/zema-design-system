@@ -1,0 +1,103 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Chevron from '../../components/Chevron.vue';
+
+<Meta
+	title="Components/Forms/Chevron"
+	component={ Chevron }
+	argTypes={{
+		direction: {
+			control:{
+				type: 'select',
+				options: [
+					'top',
+					'right',
+					'bottom',
+					'left',
+				],
+			}
+		},
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-chevron />`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsChevron: Chevron },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div
+			style="width: 15px;
+			height: 15px;
+			position: absolute;
+			top: 35px;
+			left: 40px;"
+		>
+			<rds-chevron
+				v-bind="args" 
+			/>
+		</div>`,
+});
+
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Chevron
+
+### Chevrons are graphic elements used in interfaces to indicate the possibility of interaction.
+---
+<br />
+
+## When to use:
+- Part of an element can be hidden from view,
+- Indicate actions such as `play`, `next` and `fastfoward`
+
+
+<br />
+
+## When not to use:
+- Like icons.
+- Avoid using chevrons without the  `animate` active property
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Chevron"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Chevron" />

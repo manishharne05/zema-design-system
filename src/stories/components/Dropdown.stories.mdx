@@ -1,0 +1,83 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Dropdown from '../../components/Dropdown.vue';
+
+<Meta
+	title="Components/Display/Dropdown"
+	component={ Dropdown }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-dropdown
+	label="Age"
+    content="0 to 120 years"
+	@click="isActive = !isActive"
+>
+	<p>Dropdown Slot</p>
+</rds-dropdown>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsDropdown: Dropdown },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-dropdown
+			v-bind="$props"
+		>
+			<p>Dropdown Slot</p>
+		</rds-dropdown>`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+
+# Dropdown
+
+### Dropdown are components used to activate popovers containing filters for lists and views.
+---
+<br />
+
+## When to use:
+- For use with filters.
+- There are popovers containing filtering options.
+
+
+<br />
+
+## When not to use:
+- Replacing a Multiselect or Select.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Dropdown"
+		args={{
+			label: 'Age',
+			content: '0 to 120 years',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Dropdown" />

@@ -1,0 +1,91 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import TextArea from '../../components/TextArea.vue';
+
+<Meta
+	title="Components/Forms/TextArea"
+	component={ TextArea }
+	argTypes={{
+		state: {
+			control: {
+				type: 'select',
+					options: [
+						'default',
+						'valid',
+						'invalid',
+					],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<rds-text-area />`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsTextArea: TextArea },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: '',
+		};
+	},
+	template: /*html*/ `
+		<rds-text-area
+			v-bind="args" 
+			v-model="value"
+		/>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# TextArea
+
+### TextAreas allow users to enter long text into an interface.
+---
+<br />
+
+## When to use:
+- Require a text field to enter large information. Example: Product description or messages.
+
+<br />
+
+## When not to use:
+- It is only necessary to enter specific data in the text field.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="TextArea"
+		args={{}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="TextArea" />

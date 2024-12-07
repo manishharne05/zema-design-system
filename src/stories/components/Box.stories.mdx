@@ -1,0 +1,115 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Box from '../../components/Box.vue';
+
+<Meta
+	title="Components/Containers/Box"
+	component={ Box }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+					'dark'
+				],
+			}
+		},
+		padding: {
+			control: {
+				type: 'range',
+				min: 4,
+				max: 12,
+				step: 1,
+			},
+	},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-box
+	:elevated="false"
+	padding="4"
+	:fluid="false"
+	variant="grey"
+	:clickable="false"
+>
+	2
+</rds-box>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsBox: Box },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="height: 200px">
+			<rds-box
+				v-bind="args"
+			>
+				2
+			</rds-box>
+		</div>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Box
+
+### Boxes are basic container components that encapsulate content with the standard care border, shadow, and padding styles. They can be used as a primitive component for cards, popovers, modals, etc.
+
+---
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Box"
+		args={{
+			padding: 4,
+			fluid: false,
+			elevated: false,
+			variant: 'gray',
+			overflowVisible: false,
+			verticalFluid: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Box" />

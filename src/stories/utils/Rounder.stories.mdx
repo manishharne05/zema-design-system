@@ -1,0 +1,58 @@
+import { Source, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Utils/Methods/Rounder()"/>
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Rounder()
+
+Method used to determine the `border-radius` of an element based on its width.
+
+<hr />
+<br />
+
+⚠️ *Method only available for internal development in RDS*
+
+<br />
+
+#### Arguments
+
+**(Number):**
+- Width of an element in the DOM
+- Mandatory: *Yes*
+- Valid values: any natural number;
+
+**(Number):**
+- Border-radius limiter. This prop limits the maximum value that can be returned.
+- Mandatory: *No*
+- Valid values: any natural number;
+- Default value: 24px;
+
+<br />
+
+#### Return
+
+**(Number):** Value to be used as border-radius, calculated from the width of an element in the DOM.
+
+<br />
+
+#### Example
+
+<Story name="Rounder">
+</Story>
+
+<Source
+  language='js'
+  format={true}
+  code={/*js*/ `
+  this.rounder(this.width, 16)
+`}
+/>

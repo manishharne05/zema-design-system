@@ -1,0 +1,115 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import PolarAreaChart from '../../components/PolarAreaChart.vue';
+
+<Meta
+	title="Components/Charts/PolarAreaChart"
+	component={ PolarAreaChart }
+	argTypes={{
+		variant: {
+			control: {
+				type: 'select',
+				options: [
+				'green',
+				'teal',
+				'turquoise',
+				'blue',
+				'indigo',
+				'violet',
+				'pink',
+				'red',
+				'orange',
+				'amber',
+				'gray',
+				'dark'
+				]
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format: true,
+				code: /*html*/
+`<rds-polar-area-chart
+	:data="chartData"
+	:variant="variant"
+	:labels="chartLabels"
+	:is-visible-point-names="isVisiblePointNames"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsPolarAreaChart: PolarAreaChart },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px; height: 300px">
+			<rds-polar-area-chart
+				v-bind="args"
+			/>
+		</div>
+	`
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# PolarAreaChart
+
+### A reusable chart component to display data visually.
+---
+<br />
+
+## When to use:
+- Display data in visual formats;
+- View trends along continuous variables such as directions or degrees.
+
+<br />
+
+## When not to use:
+- For simple information that can be displayed in a tabular or text format;
+- When the data emphasizes the numerical comparison of quantities;
+- Not recommended for representing time series or discrete data.
+
+## Preview
+
+<Canvas>
+	<Story
+		name="PolarAreaChart"
+		args={{
+			labels: ['January', 'February', 'March', 'April', 'May'],
+			variant: 'green',
+			isVisiblePointNames: true,
+			data: [
+				{
+					name: 'Echocardiogram',
+					datasets: [
+						{
+							label: 'Exams carried out',
+							data: [120, 220, 180, 320, 150],
+						},
+					]
+				},
+			],
+	}}
+>
+	{ Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="PolarAreaChart" />
+

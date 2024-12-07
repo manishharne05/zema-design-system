@@ -1,0 +1,177 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Table from '../../components/Table.vue';
+
+<Meta
+	title="Components/Display/Table"
+	component={ Table }
+	argTypes={{
+		selectionVariant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-table
+	:fields="fields"
+	:items="items"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsTable: Table },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			selected: [],
+		};
+	},
+	template: /*html*/
+		`<rds-table
+			v-model="selected"
+			v-bind="args"
+		/>
+		<br>
+		`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.selected);
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Table
+
+### Tables are components used to display and organize content, facilitating the comparison and analysis of information.
+---
+<br />
+
+## When to use:
+- Want to compare data.
+- It is necessary to display data in a tabulated form.
+
+<br />
+
+## When not to use:
+- It is necessary to interact/perform an action with the content presented in the table.
+
+<br />
+
+## Preview
+
+export const fields = [
+	{
+		key: 'field-1',
+		label: 'Field 1',
+		formatter: (value) => { return `${value}a`  },
+		width: '50%',
+	},
+	{
+		key: 'field2',
+		label: 'Field 2',
+		width: '20%',
+	},
+	{
+		key: 'field-3',
+		label: 'Field 3',
+	},
+	{
+		key: 'field_4',
+		label: 'Field 4',
+	},
+];
+
+export const items = [
+	{
+		'field-1': '2023-10-10',
+		'field2': '0',
+		'field-3': 0,
+		'field_4': 10298726432
+	},
+	{
+		'field-1': '2023-10-10',
+		'field2': '1',
+		'field-3': 72,
+		'field_4': 10298726432
+	},
+	{
+		'field-1': '2023-10-10',
+		'field2': 'field 2 content b',
+		'field_3': 60,
+		'field_4': 10298726432
+	},
+];
+
+
+export const fields2 = [
+	{
+		key: 'field-1',
+		label: 'Field 1',
+	},
+	'field2',
+	'field_3',
+];
+export const items2 = [
+	{
+		'field-1': 'Jhon Mate',
+		'field2': 'field 2 content - a',
+		'field_3': 50,
+	},
+	{
+		'field-1': 'Steve Henry',
+		'field2': 'field 2 content - b',
+		'field_3': 72,
+	},
+	{
+		'field-1': 'Jonathan Bains',
+		'field2': 'field 2 content - c',
+		'field_3': 60,
+	},
+];
+
+<Canvas>
+	<Story
+		name="Table"
+		args={{
+			fields,
+			items,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Table" />

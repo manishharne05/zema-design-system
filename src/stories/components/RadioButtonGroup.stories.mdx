@@ -1,0 +1,122 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import RadioButtonGroup from '../../components/RadioButtonGroup.vue';
+
+<Meta
+	title="Components/Forms/RadioButtonGroup"
+	component={ RadioButtonGroup }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-radio-button-group
+	:options="options"
+	:value="value"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsRadioButtonGroup: RadioButtonGroup },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-radio-button-group
+			v-bind="args" 
+		/>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# RadioButtonGroup
+
+### RadioButtonsGroup are custom radio buttons for easy selection and feedback.
+---
+<br />
+
+## When to use:
+- The options that the component seeks to provide are mutually exclusive.
+- It is necessary to use a ```<input type="radio"``` />.
+
+<br />
+
+## When not to use:
+- Two or more options can be selected at the same time.
+- There are 4 or more options. Prefer Dropdowns in these cases.
+
+## Note:
+- You can disable each of the radio buttons by passing the ```disable: true``` property in the respective object
+in the options array. If you want to disable the entire group, you can set the ```disabled``` prop to true in the component.
+
+<br />
+
+## Preview
+export const value = '';
+export const options = [
+	{
+		text: 'Option disabled',
+		value: 'value1',
+		disabled: true,
+	},
+	{
+		text: 'Option enabled 1',
+		body: 'Add descriptive/explanatory text for this option',
+		value: 'value2',
+	},
+	{
+		text: 'Option enabled 2',
+		value: 'value3',
+	},
+];
+
+<Canvas>
+	<Story
+		name="Radio button group"
+		args={{
+			options,
+			value,
+			disabled: false,
+			variant: 'green',
+			inline: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Radio button group" />

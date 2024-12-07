@@ -1,0 +1,110 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import CalloutCard from '../../components/CalloutCard.vue';
+
+<Meta
+	title="Components/Display/CalloutCard"
+	component={ CalloutCard }
+	argTypes={{
+		actionButtonVariant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber'
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<rds-callout-card
+	image="https://cdn-icons-png.flaticon.com/512/7486/7486747.png"
+	text="CalloutCard Text"
+	title="CalloutCard Title"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsCalloutCard: CalloutCard },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-callout-card
+			v-bind="args"
+			@actionButtonClick="logButtonClick"
+		/>
+	`,
+	methods: {
+		logButtonClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# CalloutCard
+### CalloutCards are components used to provide the user with useful information, 
+such as tutorials, shortcuts or tips.
+---
+<br />
+
+## When to use:
+- It is necessary to show shortcuts, tips or tutorials in a non-intrusive and 
+visually striking way.
+
+<br />
+
+## When not to use:
+- It is necessary to show messages related to changes or special conditions that 
+occur in a component or page. For these cases, the use of Alert is recommended.
+
+<br />
+
+## Preview
+
+export const title = 'CalloutCard Title';
+
+export const text =  `It is necessary to show messages related to changes or special 
+conditions that occur in a component or page. For these cases, the use of Alert is recommended.`;
+
+<Canvas>
+	<Story
+		name="CalloutCard"
+		args={{
+			image: 'https://cdn-icons-png.flaticon.com/512/7486/7486747.png',
+			title,
+			text,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="CalloutCard" />

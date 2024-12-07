@@ -1,0 +1,112 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Radio from '../../components/Radio.vue';
+
+<Meta
+	title="Components/Forms/Radio"
+	component={ Radio }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-radio
+	v-model="selected"
+	value="option-1"
+	label="Option 1"
+>
+	Highlight option
+</rds-radio>`	
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsRadio: Radio },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			selected: '',
+		};
+	},
+	template: /*html*/ `
+		<div>
+			<rds-radio
+				v-model="selected"
+				v-bind="args"
+			>
+				Radio label
+			</rds-radio>
+		</div>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Radio
+
+### Radio allows users to select an option from a set.
+---
+<br />
+
+## When to use:
+- The options that the component seeks to provide are mutually exclusive.
+
+<br />
+
+## When not to use:
+- Two or more options can be selected at the same time.
+- There are 4 or more options. You can use the component `Dropdown` these cases.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Radio"
+		
+		args={{
+			value: 'option-1',
+			label: 'Option 1',
+			disabled: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Radio" />

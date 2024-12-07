@@ -1,0 +1,115 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import PieChart from '../../components/PieChart.vue';
+
+<Meta
+	title="Components/Charts/PieChart"
+	component={ PieChart }
+	argTypes={{
+		variant: {
+			control: {
+				type: 'select',
+				options: [
+				'green',
+				'teal',
+				'turquoise',
+				'blue',
+				'indigo',
+				'violet',
+				'pink',
+				'red',
+				'orange',
+				'amber',
+				'gray',
+				'dark'
+				]
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format: true,
+				code: /*html*/
+`<rds-pie-chart
+	:data="chartData"
+	:variant="variant"
+	:labels="chartLabels"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsPieChart: PieChart },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<div style="background-color: #F8F9FA; padding: 16px; border-radius: 4px; height: 300px">
+			<rds-pie-chart
+				v-bind="args"
+			/>
+		</div>
+	`
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# PieChart
+
+### A reusable chart component to display data visually.
+---
+
+## When to use:
+- Display data in visual formats
+- View trends, proportions or comparisons in data
+- Display proportions or parts of a whole, where each slice represents a portion of the total
+- Works well with mutually exclusive categories
+
+<br />
+
+## When not to use:
+- For simple information that can be displayed in a tabular or text format
+- When the data presents many categories or subcategories
+- Not suitable for continuous data or temporal data.
+
+## Preview
+
+<Canvas>
+	<Story
+		name="PieChart"
+		args={{
+			labels: ['January', 'February', 'March', 'April', 'May'],
+			colors: ['teal', 'violet', 'amber', 'blue', 'red'],
+			variant: 'green',
+			data: [
+				{
+					name: 'Echocardiogram',
+					datasets: [
+						{
+							label: 'Exams carried out',
+							data: [120, 220, 180, 320, 150],
+						},
+					]
+				},
+			],
+	}}
+>
+	{ Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="PieChart" />
+

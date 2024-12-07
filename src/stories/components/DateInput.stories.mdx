@@ -1,0 +1,119 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import DateInput from '../../components/DateInput.vue';
+
+<Meta
+	title="Components/Forms/DateInput"
+	component={ DateInput }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+				],
+			}
+		},
+		range: {
+			control: {
+				type: 'boolean',
+			},
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<rds-date-input
+	label="Time"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsDateInput: DateInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: '2000-01-01',
+		};
+	},
+	template: /*html*/ `
+		<rds-date-input
+			v-bind="args"
+			v-model="value"
+		/>`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# DateInput
+
+### DateInputs are components for choosing dates and times within forms.
+---
+<br />
+
+## We recommend using DateInputs when:
+- There is a need to offer date options within a group of inputs on a form.
+
+<br />
+
+## We do not recommend using DateInputs when:
+- It is necessary to display additional conditional information in the calendar (e.g. dates that are already occupied).
+- The calendar must be displayed constantly.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="DateInput"
+		args={{
+			required: true,
+			variant: 'green',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="DateInput" />

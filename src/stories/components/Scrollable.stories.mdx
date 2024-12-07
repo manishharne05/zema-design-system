@@ -1,0 +1,125 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Scrollable from '../../components/Scrollable.vue';
+
+<Meta
+	title="Components/Containers/Scrollable"
+	component={ Scrollable }
+	argTypes={{
+		maxHeight: {
+			description: 'Maximum container height',
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-scrollable
+	maxHeight="150px"
+>
+	<p>
+		There is a theory that says that if one day someone discovers 
+		exactly what the Universe is for and why it is here, it 
+		will disappear instantly and be replaced by something still 
+		stranger and more inexplicable. There is a second theory that says 
+		that this has already happened.
+	</p>
+	<p>
+		There is a theory that says that if one day someone discovers 
+		exactly what the Universe is for and why it is here, it 
+		will disappear instantly and be replaced by something still 
+		stranger and more inexplicable. There is a second theory that says 
+		that this has already happened.
+	</p>
+</rds-scrollable>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsScrollable: Scrollable },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-scrollable
+			v-bind="args" 
+		>
+			<p>
+				There is a theory that says that if one day someone discovers 
+				exactly what the Universe is for and why it is here, it 
+				will disappear instantly and be replaced by something still 
+				stranger and more inexplicable. There is a second theory that says 
+				that this has already happened.
+			</p>
+			<p>
+				There is a theory that says that if one day someone discovers 
+				exactly what the Universe is for and why it is here, it 
+				will disappear instantly and be replaced by something still 
+				stranger and more inexplicable. There is a second theory that says 
+				that this has already happened.
+			</p>
+			<p>
+				There is a theory that says that if one day someone discovers 
+				exactly what the Universe is for and why it is here, it 
+				will disappear instantly and be replaced by something still 
+				stranger and more inexplicable. There is a second theory that says 
+				that this has already happened.
+			</p>
+			<p>
+				There is a theory that says that if one day someone discovers 
+				exactly what the Universe is for and why it is here, it 
+				will disappear instantly and be replaced by something still 
+				stranger and more inexplicable. There is a second theory that says 
+				that this has already happened.
+			</p>
+		</rds-scrollable>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Scrollable
+
+### Scrollable is a component used to make the content involved "scrollable".
+---
+<br />
+
+## When to use:
+- If you want to show a lot of content in a small or pre-defined space.
+
+<br />
+
+## When not to use:
+- There is little content.
+- There is already another scrollable.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Scrollable"
+		
+		args={{
+			maxHeight: '150px',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Scrollable" />

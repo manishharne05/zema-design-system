@@ -1,0 +1,154 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Flexbox from '../../components/Flexbox.vue';
+import Spacer from '../../components/Spacer.vue';
+
+<Meta
+	title="Components/Containers/Flexbox"
+	component={ Flexbox }
+	argTypes={{
+		direction: {
+			control:{
+				type: 'select',
+				options: [
+					'row',
+					'row-reverse',
+					'column',
+					'column-reverse',
+				],
+			}
+		},
+		wrap: {
+			control:{
+				type: 'select',
+				options: [
+					'nowrap',
+					'wrap',
+					'wrap-reverse',
+				],
+			}
+		},
+		justify: {
+			control:{
+				type: 'select',
+				options: [
+					'start',
+					'end',
+					'center',
+					'space-between',
+					'space-around',
+					'space-evenly',
+				],
+			}
+		},
+		align: {
+			control:{
+				type: 'select',
+				options: [
+					'stretch',
+					'start',
+					'center',
+					'end',
+					'baseline',
+				],
+			}
+		},
+		gap: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 12,
+				step: 1,
+			},
+	},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-box
+	:elevated="false"
+>
+	2
+</rds-box>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsFlexbox: Flexbox },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-flexbox
+			v-bind="args"
+			class="grid-background"
+		>
+			<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 1 </div>
+			<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 2 </div>
+			<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 3 </div>
+			<div style="height: 50px; width: 300px" class="docs-grid-cell"> FlexItem 4 </div>
+		</rds-flexbox>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# FlexBox
+
+### Flexbox is a component that uses the CSS Flexbox API to provide control over the alignment and distribution of elements in a single dimension (row or column).
+---
+<br />
+
+## When to use:
+- To align elements in a single dimension, whether in a row or column.
+- When it is necessary to distribute the space between items in a responsive way, adapting to the screen size.
+- To center elements horizontally or vertically within a container.
+- When it is necessary to control the growth, shrinkage and spacing of child elements in relation to the parent container.
+
+<br />
+
+## When not to use:
+- When the layout requires organization in two dimensions (rows and columns simultaneously). For these cases, use `<rds-grid>`.
+- For scenarios involving complex layout structures, such as Dashboards or Image Galleries, where two-dimensional control is required.
+- In situations where fixed or absolute positioning is necessary to control the layout of the content.
+
+<br />
+
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Flexbox"
+		args={{
+			direction: 'row',
+			gap: 1,
+			wrap: 'wrap',
+			justify: 'start',
+			align: 'start',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Flexbox" />

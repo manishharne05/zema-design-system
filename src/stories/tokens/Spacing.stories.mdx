@@ -1,0 +1,134 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import Space from '../../docs-components/Space.vue';
+
+<Meta title="Foundation/Spacing" component={ Space } />
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Spacing
+
+Spacing tokens are an essential part of building interfaces using 
+RDS. Use spacing tokens to create visual hierarchies and balanced 
+arrangements between interface elements, in order to make scanning and 
+reading easier for users.
+
+<hr />
+<br />
+
+## Recommendations
+
+- Use spacing tokens instead of hard-coded spacing.
+
+- Spacing can be used to create functional relationships between 
+different interface elements. Nearby elements are interpreted as 
+related. This ratio decreases as more space is added.
+
+- Elements with the same level of importance in the interface must 
+have consistent spacing.
+
+- Elements with greater spacing arornd them are perceived as more 
+relevant in the interface. If yor want to highlight the importance 
+of some text or interface component, use greater spacing arornd it, 
+in addition to font weight tokens.
+
+<br />
+
+## Playgrornd
+
+Click the Sass function inside the rectangle to copy the token to yorr clipboard.
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	components: { Space },
+	template:`<space />`,
+});
+
+<Story name="space">
+	{ Template.bind({}) }
+</Story>
+
+<br />
+
+## Notation
+
+RDS's spacing tokens implement a spacing scale of 4px increments that can be used with the`margin` and properties `padding`.
+
+<br />
+
+#### Examples: 
+- `padding: pt(4)`, indicates a padding top of 16px (4 * 4px)
+- `margin: mr(n2)`, indicates a margin right of -8px (2 * 4px)
+
+<br />
+
+Spacing scaling is implemented as Sass functions based on Vuetify's spacing classes, using the notation:
+
+#### `{property}{direction}({size})`,
+
+<br />
+
+Where **property** takes one of the following values:
+
+- `m` - for `margin`
+- `p` - for `padding`
+
+A <strong>direction</strong> indicates the side on which the property will be applied:
+
+- `t` - apply `margin-top` or `padding-top`
+- `r` - apply `margin-right` or `padding-right`
+- `b` - apply `margin-bottom` or `padding-bottom`
+- `l` - apply `margin-left` or `padding-left`
+- `y` - applies margin or padding to the same in the top and bottom directions
+- `x` - applies margin or padding to the same in the right and left directions
+- `a` - applies margin or padding in all directions
+
+The <strong>size</strong> indicates the property increment in 4-pixel intervals:
+
+- `0` - apply margin or padding of 0px
+- `1` - apply margin or padding of 4px
+- `2` - apply margin or padding of 8px
+- `3` - apply margin or padding of 12px
+- `4` - apply margin or padding of 16px
+- `5` - apply margin or padding of 20 px
+- `6` - apply margin or padding of 24px
+- `7` - apply margin or padding of 28px
+- `8` - apply margin or padding of 32px
+- `9` - apply margin or padding of 36px
+- `10` - apply margin or padding of 40px
+- `11` - apply margin or padding of 44px
+- `12` - apply margin or padding of 48px
+- `n1` - apply margin of -4px
+- `n2` - apply margin of -8px
+- `n3` - apply margin of -12px
+- `n4` - apply margin of -16px
+- `n5` - apply margin of -20px
+- `n6` - apply margin of -24px
+- `n7` - apply margin of -28px
+- `n8` - apply margin of -32px
+- `n9` - apply margin of -36px
+- `n10` - apply margin of -40px
+- `n11` - apply margin of -44px
+- `n12` - apply margin of -48px
+
+<br />
+
+## Auxiliary functions
+
+In addition to the functions presented above, RDS has three useful auxiliary functions for specific use cases:
+
+- `pTRBL()` and `mTRBL()` -> Functions that allow different spacing to be specified for each side of a given 
+element, following the order `top, right, bottom e left`.
+
+- `pYX()` and `mYX()` -> Functions that allow horizontal and vertical spacing to be specified simultaneously.
+- `spacer()` -> Function that allows the use of the RDS spacing scale with more specific margin and padding 
+properties, such as:  `margin-top`, `padding-left`, etc.

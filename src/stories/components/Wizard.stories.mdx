@@ -1,0 +1,257 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Wizard from '../../components/Wizard.vue';
+import TextInput from '../../components/TextInput.vue';
+
+<Meta
+	title="Components/Display/Wizard"
+	component={ Wizard }
+	argTypes={{
+		activeStep: {
+			control: {
+				type: 'range',
+				min: 0,
+				max: 2,
+				step: 1,
+			},
+		},
+		nextButtonVariant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'dark'
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-wizard
+	:steps="steps"
+	:active-step="activeStep"
+	@step-change="handleStepChange"
+	@next-action="handleNextAction"
+	@cancel-action="handleCancelAction"
+>
+<template #step-1>
+		<div style="height: 400px; gap: 16px; display: flex; flex-direction: column;">
+			<rds-text-input
+				fluid
+				label="Name"
+			/>
+			<rds-text-input
+				fluid
+				label="Surname"
+			/>
+			<rds-text-input
+				fluid
+				label="Mother's name"
+			/>
+		</div>
+	</template>
+	<template #step-2>
+		<div style="height: 400px; gap: 16px; display: flex; flex-direction: column;">
+			<rds-text-input
+				fluid
+				label="Zip code"
+			/>
+			<rds-text-input
+				fluid
+				label="Road"
+			/>
+			<rds-text-input
+				fluid
+				label="Neighborhood"
+			/>
+			<rds-text-input
+				fluid
+				label="City"
+			/>
+		</div>
+	</template>
+	<template #step-3>
+		<div style="height: 400px; gap: 16px; display: flex; flex-direction: column;">
+			<rds-text-input
+				fluid
+				label="Modality"
+			/>
+			<rds-text-input
+				fluid
+				label="URL of site"
+			/>
+			<rds-text-input
+				fluid
+				label="Additional Information"
+			/>
+		</div>
+	</template>
+</rds-wizard>
+`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsWizard: Wizard, RdsTextInput: TextInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			activeStep: 0,
+		};
+	},
+	template: /*html*/
+		`<rds-wizard
+			v-bind="args"
+			:active-step="activeStep"
+			@step-change="handleStepChange"
+			@next-action="handleNextAction"
+			@cancel-action="handleCancelAction"
+		>
+			<template #step-1>
+				<div style="height: 400px; gap: 16px; display: flex; flex-direction: column;">
+					<rds-text-input
+						fluid
+						label="Name"
+					/>
+					<rds-text-input
+						fluid
+						label="Surname"
+					/>
+					<rds-text-input
+						fluid
+						label="Mother's name"
+					/>
+				</div>
+			</template>
+			<template #step-2>
+				<div style="height: 400px; gap: 16px; display: flex; flex-direction: column;">
+					<rds-text-input
+						fluid
+						label="Zip code"
+					/>
+					<rds-text-input
+						fluid
+						label="Road"
+					/>
+					<rds-text-input
+						fluid
+						label="Neighborhood"
+					/>
+					<rds-text-input
+						fluid
+						label="City"
+					/>
+				</div>
+			</template>
+			<template #step-3>
+				<div style="height: 400px; gap: 16px; display: flex; flex-direction: column;">
+					<rds-text-input
+						fluid
+						label="Modality"
+					/>
+					<rds-text-input
+						fluid
+						label="URL of site"
+					/>
+					<rds-text-input
+						fluid
+						label="Additional Information"
+					/>
+				</div>
+			</template>
+		</rds-wizard>
+		<br>
+		`,
+	methods: {
+		handleStepChange(value) {
+			console.info('%c@step-change: ', 'color: #2C70CD;', value);
+			this.activeStep = value;
+		},
+		handleNextAction(value) {
+			console.info('%c@next-action: ', 'color: #2C70CD;', value.nextStep);
+			this.activeStep = value.nextStep;
+		},
+		handleCancelAction(value) {
+			console.info('%c@cancel-action: ', 'color: #2C70CD;', value);
+		}
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Wizard
+
+### Wizards are components used for a step-by-step process that allows the user to enter information in a prescribed order and in which subsequent steps may depend on the information entered in previous steps.
+---
+<br />
+
+## When to use:
+- When you need to complete steps in a certain sequence.
+- It is necessary to display information in blocks to simplify the flow.
+
+<br />
+
+## When not to use:
+- When the process is not so complex, there is no need to divide it into stages.
+- When there are more than three steps, you should consider dividing them into more processes.
+- When there is no need to guide the user in a sequence.
+
+<br />
+
+
+## Preview
+
+export const steps = [
+	{
+		title: 'General information',
+		subtitle: 'Enter identification information',
+	},
+	{
+		title: 'Delivery address',
+	},
+	{
+		title: 'Additional information',
+		subtitle: 'Add additional information for screening',
+		image: 'https://static.vecteezy.com/system/resources/previews/011/537/753/non_2x/box-empty-state-single-isolated-icon-with-flat-style-free-vector.jpg',
+	},
+];
+
+<Canvas>
+	<Story
+		name="Wizard"
+		args={{
+			steps,
+			nextButtonVariant: 'blue',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Wizard" />

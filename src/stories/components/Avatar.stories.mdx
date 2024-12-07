@@ -1,0 +1,107 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import Avatar from '../../components/Avatar.vue';
+
+<Meta
+	title="Components/Display/Avatar"
+	component={ Avatar }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'gray',
+					'white',
+				],
+			}
+		},
+		size: {
+			control:{
+				type: 'select',
+				options: [
+					'sm',
+					'md',
+					'lg',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ `
+<rds-avatar
+	src="https://thispersondoesnotexist.com/"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsAvatar: Avatar },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-avatar
+			v-bind="args" 
+		>
+			<template #dropdown-content>
+				Dropdown content
+			</template>
+		</rds-avatar>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+
+# Avatar
+
+### Avatars are components used to display visual representations of users, such as images or names.
+---
+<br />
+
+## When to use:
+- The use of avatars is recommended when the user or list of users has defined images or names.
+- It is generally used in conjunction with Headers, NavBars, Tables, Cards and Lists
+
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Avatar"
+		args={{
+			src: 'https://thispersondoesnotexist.com/',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Avatar" />

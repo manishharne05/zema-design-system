@@ -1,0 +1,82 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import SkeletonText from '../../components/SkeletonText.vue';
+
+<Meta
+	title="Components/Loaders/SkeletonText"
+	component={ SkeletonText }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-skeleton-text
+	:width="250"
+	:height="16"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsSkeletonText: SkeletonText },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-skeleton-text
+			v-bind="args" 
+		/>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Skeleton Text
+
+### Skeleton texts allow displaying a loading state for various component types
+### while your data is being fetched.
+---
+<br />
+
+## When to use:
+- Inform the user that the component information is being loaded.
+- The content to be loaded is dynamic.
+
+<br />
+
+## When not to use:
+- The content to be loaded is static.
+
+## Comments
+- The Skeleton text must be adjusted according to the component to be used.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="SkeletonText"
+		
+		args={{
+			width: "250",
+			height: "25"
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="SkeletonText" />

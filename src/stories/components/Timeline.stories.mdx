@@ -1,0 +1,141 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Timeline from '../../components/Timeline.vue';
+import TimelineItem from '../../components/TimelineItem.vue';
+
+<Meta
+	title="Components/Display/Timeline"
+	component={ Timeline }
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-timeline
+	:reverse="false"
+>
+	<rds-timeline-item variant="blue" loading>
+		<template #title>
+			Item 1
+		</template>
+		<template #content>
+			In this way, clear determination of objectives encourages
+			the standardization of new propositions.
+		</template>
+	</rds-timeline-item> 
+	<rds-timeline-item variant="blue">
+		<template #title>
+			Item 2
+		</template>
+		<template #content>
+			What we always have to keep in mind is that the consensus on
+			the need for qualification assumes important positions
+			in establishing normative rules of conduct.
+		</template>
+	</rds-timeline-item>
+	<rds-timeline-item variant="blue">
+		<template #title>
+			Item 3
+		</template>
+		<template #content>
+			Daily practice proves that the complexity of studies
+			carried out encourages the standardization of corporate paradigms.
+		</template>
+	</rds-timeline-item>
+</rds-timeline>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsTimeline: Timeline, RdsTimelineItem: TimelineItem },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-timeline
+			v-bind="args" 
+		>
+			<rds-timeline-item variant="blue" loading>
+				<template #title>
+					Item 1
+				</template>
+				<template #content>
+					In this way, clear determination of objectives encourages
+					the standardization of new propositions.
+				</template>
+			</rds-timeline-item> 
+			<rds-timeline-item variant="blue">
+				<template #title>
+					Item 2
+				</template>
+				<template #content>
+					What we always have to keep in mind is that the consensus on
+					the need for qualification assumes important positions
+					in establishing normative rules of conduct.
+				</template>
+			</rds-timeline-item>
+			<rds-timeline-item variant="blue">
+				<template #title>
+					Item 3
+				</template>
+				<template #content>
+					Daily practice proves that the complexity of studies
+					carried out encourages the standardization of corporate paradigms.
+				</template>
+			</rds-timeline-item>
+		</rds-timeline>
+	`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Timeline
+
+### Timelines are components used to present information in chronological order.
+
+---
+<br />
+
+## When to use:
+- If there is a set of information that can be categorized by date.
+
+
+<br />
+
+## When not to use:
+- If you need a stepper component.
+- The order of the information you are presenting is irrelevant.
+
+<br />
+
+## Comments:
+- The component `Timeline` is a wrapper and is used to group a series of components `TimelineItems` into the same component via slots. For more information, access the component documentation.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Timeline"
+		args={{
+			reverse: false,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Timeline" />

@@ -1,0 +1,133 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Pulsar from '../../components/Pulsar.vue';
+
+<Meta
+	title="Components/Notification/Pulsar"
+	component={ Pulsar }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber'
+				],
+			}
+		},
+		position: {
+			control:{
+				type: 'select',
+				options: [
+					'top-start',
+					'top',
+					'top-end',
+					'right-start',
+					'right',
+					'right-end',
+					'bottom-end',
+					'bottom',
+					'bottom-start',
+					'left-end',
+					'left',
+					'left-start',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<div id="pulsar-target" style="width: fit-content;">Pulsar target</div>
+<rds-pulsar
+	variant='green'
+	position='top-end'
+	targetId="pulsar-target"
+>
+</rds-pulsar>`
+},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsPulsar: Pulsar },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+			<div id="pulsar-target" style="width: fit-content;">Pulsar target</div>
+			<rds-pulsar
+				v-bind="args"
+				targetId="pulsar-target"
+			>
+			</rds-pulsar>
+	`,
+	methods: {
+		logClickableClick(event) {
+			console.info('logClick: ', event);
+		}
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Pulsar
+
+### Pulsars are educational components used to instruct users about new features in the interface or product.
+---
+<br />
+
+## When to use:
+- To attract the user's attention to a new feature or area of ​​the interface in a non-intrusive way.
+
+
+<br />
+
+## When not to use:
+- As the only resource for communicating about changes to the interface or product.
+- When another pulsar is already in use on the interface.
+
+<br />
+
+## Comments:
+- Pulsars should not be a permanent part of the interface. After a certain feature of the 
+product has been absorbed/understood by users, the pulse loses its purpose and should be considered removing it.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Pulsar"
+		args={{
+			variant: 'green',
+			position: 'top-end',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Pulsar" />

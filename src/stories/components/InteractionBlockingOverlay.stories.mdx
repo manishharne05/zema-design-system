@@ -1,0 +1,102 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import InteractionBlockingOverlay from '../../components/InteractionBlockingOverlay.vue';
+import Button from '../../components/Button.vue';
+import { colorOptions } from '../../utils/constants/colors.js'
+
+<Meta
+	title="Components/Overlays/InteractionBlockingOverlay"
+	component={ InteractionBlockingOverlay }
+	argTypes={{
+		blockInteraction: {
+			control:{
+				type: 'select',
+				options: [
+					'mobile',
+					'landscape',
+				],
+			}
+		},
+		buttonVariant: {
+			control: {
+				type: 'select',
+				options: colorOptions,
+			}
+		}
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/
+`<rds-interaction-blocking-overlay
+	block-interaction="mobile"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	setup() {
+		return { args };
+	},
+	components: { RdsInteractionBlockingOverlay: InteractionBlockingOverlay, RdsButton: Button },
+	template: /*html*/ `
+		<div class="d-flex justify-content-center">
+			<b>Test the component using the browser's devtools, changing the screen resolution to mobile or landscape.</b>
+			<rds-interaction-blocking-overlay
+				v-bind="args"
+				@button-click="console.log('button-click')"
+			/>
+		</div>
+	`,
+});
+
+
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+
+# InteractionBlockingOverlay
+
+### InteractionBlockingOverlay is a component used to block user interaction in situations where the system is not prepared for use, such as on screens or modules that do not have adequate responsiveness for mobile devices or in landscape mode.
+---
+<br />
+
+## When to use:
+- When a screen or module does not have a responsive version for mobile devices, ensuring that the user does not interact with broken or non-functional elements.
+- When a mobile device is in landscape mode and the application layout is not adapted to that orientation.
+- In temporary situations, where a specific functionality or content needs to be disabled for maintenance or updating.
+
+<br />
+
+## When not to use:
+- When the system already offers a responsive version or a viable alternative for interaction on mobile devices.
+- In cases where the application can automatically adjust the layout without the need for blocking.
+- If blocking interaction can cause frustration to the user, especially in essential functionalities or critical flows.
+
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="InteractionBlockingOverlay"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="InteractionBlockingOverlay" />

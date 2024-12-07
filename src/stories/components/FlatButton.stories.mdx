@@ -1,0 +1,85 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import FlatButton from '../../components/FlatButton.vue';
+
+<Meta
+	title="Components/Forms/FlatButton"
+	component={ FlatButton }
+	argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber'
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-flat-button
+	variant="green"
+	text="Link Button"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsFlatButton: FlatButton },
+	setup() {
+		return { args };
+	},
+	template: /*html*/ `
+		<rds-flat-button
+			v-bind="args" 
+		>
+		</rds-flat-button>`,
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# FlatButton
+
+### FlatButtons are components similar to links, but that function like buttons.
+---
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="FlatButton"
+		args={{
+			variant: 'green',
+			text: 'Link Button',
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="FlatButton" />

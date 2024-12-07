@@ -1,0 +1,116 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import Slider from '../../components/Slider.vue';
+
+<Meta
+	title="Components/Forms/Slider"
+	component={ Slider }
+		argTypes={{
+		variant: {
+			control:{
+				type: 'select',
+				options: [
+					'green',
+					'teal',
+					'turquoise',
+					'blue',
+					'indigo',
+					'violet',
+					'pink',
+					'red',
+					'orange',
+					'amber',
+					'white',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-slider
+	:min="0"
+	:max="100"
+	:value="value"
+/>`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsSlider: Slider },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: [20, 60],
+		};
+	},
+	template: /*html*/ `
+		<rds-slider
+			v-bind="args"
+			v-model="value"
+		/>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# Slider
+
+### Sliders are components used to select values ​​within a range.
+---
+<br />
+
+## When to use:
+- We recommend using sliders when it is necessary to select values ​​within a range,
+especially when it is necessary to select more than one value.
+- We recommend using sliders when the speed of selecting values ​​in a range is
+more relevant than precision.
+
+<br />
+
+## When not to use:
+- We do not recommend the use of sliders when there is no need for great precision in selecting values.
+- We do not recommend using sliders in conjunction with inputs so that the user can edit
+given by both the slider and the inputs.
+
+## Comments:
+- The RDS slider is a wrapper of the <a target="_blank" href="https://nightcatsama.github.io/vue-slider-component/#/">Vue slider component</a>
+with its compliance with our Principles and recommendations. For detailed component information, we recommend
+reading the documentation.
+
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="Slider"
+		args={{
+			min: 0,
+			max: 100,
+		}}
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="Slider" />

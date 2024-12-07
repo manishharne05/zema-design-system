@@ -1,0 +1,80 @@
+import { Meta, Story, Props, ArgsTable, Canvas, Preview } from '@storybook/addon-docs';
+import PinInput from '../../components/PinInput.vue';
+
+<Meta
+	title="Components/Forms/PinInput"
+	component={ PinInput }
+	argTypes={{
+		state: {
+			control:{
+				type: 'select',
+				options: [
+					'default',
+					'valid',
+					'invalid',
+				],
+			}
+		},
+	}}
+	parameters={{
+		viewMode: 'docs',
+		previewTabs: { canvas: { hidden: true }},
+		docs: {
+			source: {
+				language: 'html',
+				format:true,
+				code: /*html*/ 
+`<rds-pin-input />`
+			},
+		}
+	}}
+/>
+
+export const Template = (args) => ({
+	components: { RdsPinInput: PinInput },
+	setup() {
+		return { args };
+	},
+	data() {
+		return {
+			value: '',
+		};
+	},
+	template: /*html*/ `
+		<rds-pin-input
+			v-bind="args"
+			v-model="value"
+		/>
+	`,
+	updated() {
+		console.info('%cv-model: ', 'color: #2C70CD;', this.value);
+	},
+});
+
+<div align="center" style={{display: 'flex'}}>
+    <a href="https://rahulaher.netlify.app">
+        <img src="../../../img/logo/glyph-black-colored.svg" alt="Rahul Aher logo" width="50" />
+        <img src="../../../img/logo/word-black-colored.svg" alt="Rahul Aher" width="150" />
+    </a>
+</div>
+
+<br />
+<br />
+
+# PinInput
+
+### PinInputs are components used to add one-time passwords and 2FA codes
+---
+<br />
+
+## Preview
+
+<Canvas>
+	<Story
+		name="PinInput"
+	>
+		{ Template.bind({}) }
+	</Story>
+</Canvas>
+
+<ArgsTable story="PinInput" />
