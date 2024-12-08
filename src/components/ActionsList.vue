@@ -169,4 +169,5 @@ export default {
 		transform: translateX(10px);
 	}
 }
+
 </style>
